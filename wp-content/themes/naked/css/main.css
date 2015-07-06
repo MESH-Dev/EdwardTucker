@@ -1,0 +1,618 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100);
+@import url("styles/boots-bones.css");
+/*Fonts*/
+/*============================================*/
+/*
+Theme Name: Naked Wordpress
+Theme URI: http://bckmn.com/naked-wordpress
+Author: J Beckman
+Author URI: http://bckmn.com
+Description: A super bare theme for designers who don't know Wordpress PHP but want to build with Wordpress.
+Version: 1.0
+License: GNU General Public License
+
+-------------------------------------------------------------- */
+/* Reset
+-------------------------------------------------------------- */
+/* line 18, ../sass/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header,
+hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-size: 100%;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 35, ../sass/_reset.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* line 48, ../sass/_reset.scss */
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+  -webkit-text-size-adjust: 100%;
+  /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+  -ms-text-size-adjust: 100%;
+  /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+
+/* line 61, ../sass/_reset.scss */
+ol,
+ul {
+  list-style: none;
+}
+
+/* line 65, ../sass/_reset.scss */
+blockquote,
+q {
+  quotes: none;
+}
+
+/* line 69, ../sass/_reset.scss */
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+/* line 76, ../sass/_reset.scss */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+/* line 80, ../sass/_reset.scss */
+code,
+kbd,
+tt,
+var {
+  font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+/* line 86, ../sass/_reset.scss */
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+
+/* line 91, ../sass/_reset.scss */
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+/* line 96, ../sass/_reset.scss */
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 104, ../sass/_reset.scss */
+sup {
+  bottom: 1ex;
+}
+
+/* line 107, ../sass/_reset.scss */
+sub {
+  top: .5ex;
+}
+
+/* line 110, ../sass/_reset.scss */
+small {
+  font-size: 75%;
+}
+
+/* line 113, ../sass/_reset.scss */
+big {
+  font-size: 125%;
+}
+
+/* line 116, ../sass/_reset.scss */
+figure {
+  margin: 0;
+}
+
+/* line 119, ../sass/_reset.scss */
+table {
+  margin: 0 0 1.5em;
+  width: 100%;
+}
+
+/* line 123, ../sass/_reset.scss */
+th {
+  font-weight: bold;
+}
+
+/* line 126, ../sass/_reset.scss */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* Corrects font size not being inherited in all browsers */
+  margin: 0;
+  /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+  vertical-align: baseline;
+  *vertical-align: middle;
+  /* Improves appearance and consistency in all browsers */
+}
+
+/* line 141, ../sass/_reset.scss */
+button,
+input {
+  line-height: normal;
+  /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+  *overflow: visible;
+  /* Corrects inner spacing displayed oddly in IE6/7 */
+}
+
+/* line 150, ../sass/_reset.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: none;
+  border-radius: 10px;
+  background: #ccc;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  /* Improves usability and consistency of cursor style between image-type 'input' and others */
+  -webkit-appearance: button;
+  /* Corrects inability to style clickable 'input' types in iOS */
+  font-size: 12px;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 1.12em 1.5em 1em;
+}
+
+/* line 169, ../sass/_reset.scss */
+button:hover,
+html input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* line 177, ../sass/_reset.scss */
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* line 189, ../sass/_reset.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* Addresses box sizing set to content-box in IE8/9 */
+  padding: 0;
+  /* Addresses excess padding in IE8/9 */
+}
+
+/* line 198, ../sass/_reset.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* Addresses appearance set to searchfield in S5, Chrome */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+  box-sizing: content-box;
+}
+
+/* line 208, ../sass/_reset.scss */
+input[type="search"]::-webkit-search-decoration {
+  /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+  -webkit-appearance: none;
+}
+
+/* line 213, ../sass/_reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+  border: 0;
+  padding: 0;
+}
+
+/* line 220, ../sass/_reset.scss */
+input[type=text],
+input[type=email],
+textarea {
+  color: #888888;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+/* line 227, ../sass/_reset.scss */
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+  color: #101010;
+}
+
+/* line 232, ../sass/_reset.scss */
+input[type=text],
+input[type=email] {
+  padding: 3px;
+}
+
+/* line 236, ../sass/_reset.scss */
+textarea {
+  overflow: auto;
+  /* Removes default vertical scrollbar in IE6/7/8/9 */
+  padding: 10px;
+  vertical-align: top;
+  /* Improves readability and alignment in all browsers */
+  width: 98%;
+}
+
+/* styles
+-------------------------------------------------------------- */
+/* typography
+-------------------------------------------------------------- */
+/* Headings */
+/* line 263, ../sass/_reset.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100 !important;
+}
+
+/* line 274, ../sass/_reset.scss */
+h1 {
+  font-size: 3em;
+  line-height: 1;
+}
+
+/* Text elements */
+/* line 356, ../sass/_reset.scss */
+a {
+  color: #007998;
+  -webkit-transition: color 0.25s ease-in-out;
+  -moz-transition: color 0.25s ease-in-out;
+  -o-transition: color 0.25s ease-in-out;
+  -ms-transition: color 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
+  text-decoration: none;
+}
+
+/* Header
+-------------------------------------------------------------- */
+/* Posts/Articles
+-------------------------------------------------------------- */
+/* Misc & mixens
+-------------------------------------------------------------- */
+/* line 468, ../sass/_reset.scss */
+.clear {
+  clear: both;
+}
+
+/* clear floats */
+/* line 472, ../sass/_reset.scss */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+/* line 480, ../sass/_reset.scss */
+.clearfix {
+  display: inline-block;
+}
+
+/* line 483, ../sass/_reset.scss */
+html[xmlns] .clearfix {
+  display: block;
+}
+
+/* line 486, ../sass/_reset.scss */
+* html .clearfix {
+  height: 1%;
+}
+
+/* #Media Queries
+================================================== */
+/* Those wide screens above 1280px */
+@media only screen and (min-width: 1281px) {
+  /* line 495, ../sass/_reset.scss */
+  body {
+    font-size: 2.5em;
+    line-height: 1.5em;
+  }
+
+  /* line 499, ../sass/_reset.scss */
+  article .title {
+    font-size: 1.8em;
+    line-height: 1.5em;
+  }
+
+  /* line 503, ../sass/_reset.scss */
+  article .post-meta {
+    font-size: 0.7em;
+    line-height: 1em;
+  }
+
+  /* line 507, ../sass/_reset.scss */
+  .menu-main-nav-container a, .side-title, .menu-main-container a {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+
+  /* line 511, ../sass/_reset.scss */
+  #sidebar {
+    font-size: 0.7em;
+    line-height: 1.5em;
+  }
+
+  /* line 515, ../sass/_reset.scss */
+  #sidebar h3 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+}
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+  /* line 523, ../sass/_reset.scss */
+  .side-title {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  /* line 531, ../sass/_reset.scss */
+  .side-title {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  /* line 539, ../sass/_reset.scss */
+  .side-title {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* line 547, ../sass/_reset.scss */
+  body, article .post-meta {
+    font-size: 1.2em;
+    line-height: 1.5em;
+  }
+
+  /* line 551, ../sass/_reset.scss */
+  article .title {
+    font-size: 2em;
+    line-height: 1.5em;
+  }
+
+  /* line 555, ../sass/_reset.scss */
+  .site-title {
+    font-size: 10px !important;
+    line-height: 50px;
+  }
+
+  /* line 559, ../sass/_reset.scss */
+  .menu-main-nav-container a, .side-title, .menu-main-container a {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+  /* line 567, ../sass/_reset.scss */
+  body, article .post-meta {
+    font-size: 1.2em;
+    line-height: 1.5em;
+  }
+
+  /* line 571, ../sass/_reset.scss */
+  article .title {
+    font-size: 2em;
+    line-height: 1.5em;
+  }
+
+  /* line 575, ../sass/_reset.scss */
+  .site-title {
+    font-size: 6px !important;
+    line-height: 30px;
+  }
+
+  /* line 579, ../sass/_reset.scss */
+  .menu-main-nav-container a, .side-title, .menu-main-container a {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+/*Colors*/
+/*============================================*/
+/*Fonts*/
+/*============================================*/
+/* line 21, ../sass/main.scss */
+body {
+  overflow-x: hidden;
+  font-size: 100%;
+  font-size: 16px;
+  line-height: 1;
+  font-family: "Roboto", sans-serif;
+}
+
+/* line 23, ../sass/main.scss */
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 25, ../sass/main.scss */
+.container {
+  height: 100%;
+  position: relative;
+}
+/* line 26, ../sass/main.scss */
+.container:after, .container:before {
+  display: table;
+}
+/* line 27, ../sass/main.scss */
+.container.blue {
+  background: #00ff00;
+}
+/* line 28, ../sass/main.scss */
+.container.green {
+  background: #0000ff;
+}
+/* line 29, ../sass/main.scss */
+.container.red {
+  background: #ff0000;
+}
+
+/* line 32, ../sass/main.scss */
+.absolute_bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 34, ../sass/main.scss */
+.fixed {
+  position: fixed;
+  bottom: 0;
+}
+
+/* line 36, ../sass/main.scss */
+nav.global-nav {
+  background: #2b2b2b;
+  width: 100%;
+  z-index: 500;
+}
+/* line 37, ../sass/main.scss */
+nav.global-nav ul {
+  padding: .5em 0;
+}
+/* line 38, ../sass/main.scss */
+nav.global-nav li {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 39, ../sass/main.scss */
+nav.global-nav li ul li {
+  margin: 1em;
+}
+/* line 40, ../sass/main.scss */
+nav.global-nav li a {
+  color: #a4a4a4;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* line 46, ../sass/main.scss */
+.container.home {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* line 49, ../sass/main.scss */
+.greeting {
+  background: rgba(255, 255, 255, 0.8);
+  width: 25%;
+  position: absolute;
+  z-index: 200;
+  height: 100%;
+}
+/* line 50, ../sass/main.scss */
+.greeting h1 {
+  font-size: 4em;
+  padding-top: 2em;
+  padding-left: 1em;
+  font-size: 100;
+}
+
+/* line 53, ../sass/main.scss */
+.callout {
+  position: absolute;
+  bottom: 0;
+  background: white;
+  height: 25%;
+  padding-top: 3em;
+  width: 100%;
+  text-align: center !important;
+  color: #55595f;
+}
+/* line 54, ../sass/main.scss */
+.callout p {
+  width: 90%;
+  text-align: center !important;
+  margin: 0 auto;
+}
+
+/* line 57, ../sass/main.scss */
+.center {
+  text-align: center;
+}
+
+/* line 59, ../sass/main.scss */
+footer {
+  background: #2b2b2b;
+  color: white;
+  position: relative;
+}
+/* line 60, ../sass/main.scss */
+footer ul li {
+  display: inline;
+}
+
+/* line 62, ../sass/main.scss */
+.copyright {
+  position: absolute;
+  right: 0;
+}
