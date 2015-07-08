@@ -41,15 +41,30 @@ module.exports = function (grunt) {
             files: 'sass/**/*.scss',
             tasks: ['compass']
           }
-        }
+        },
+         browserSync: {
+         dev: {
+           bsFiles: {
+             src: [
+               "*.css",
+               "*.html"
+             ]
+           },
+           options: {
+             watchTask: true,
+             proxy: "localhost/e-tucker"
+           }
+         }
+       }
 
     });
     // load tasks from node_modules
+    grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // tasks that will be triggered with [grunt] in the cli
-    grunt.registerTask('default', ['compass', 'concat:js', 'uglify:js']);
+    grunt.registerTask('default', ['compass', 'browserSync', 'concat:js', 'uglify:js']);
 };

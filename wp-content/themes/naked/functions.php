@@ -44,6 +44,28 @@ function naked_register_sidebars() {
 // adding sidebars to Wordpress (these are created in functions.php)
 add_action( 'widgets_init', 'naked_register_sidebars' );
 
+
+// //Add specific CSS class by filter
+
+function my_class_names( $classes ) {
+	// add 'class-name' to the $classes array
+	$classes[] = 'projects';
+	// return the $classes array
+	return $classes;
+}
+
+add_filter( 'body_class', 'my_class_names' );
+
+//Page Slug Body Class
+function add_slug_body_class( $classes ) {
+global $post;
+if ( isset( $post ) ) {
+$classes[] = $post->post_type . '-' . $post->post_name;
+}
+return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+
 /*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
@@ -51,8 +73,17 @@ add_action( 'widgets_init', 'naked_register_sidebars' );
 function naked_scripts()  { 
 
 	// get the theme directory style.css and link to it in the header
+	//wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', '10000', 'all' );
 	wp_enqueue_style( 'naked-style', get_template_directory_uri() . '/css/main.css', '10000', 'all' );
-			
+	
+	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', NAKED_VERSION, true );		
+
+	wp_enqueue_script( 'naked-fitvid', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', array( 'jquery' ), NAKED_VERSION, true );		
+
+	wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), NAKED_VERSION, true );
+
+	wp_enqueue_script( 'parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array( 'jquery' ), NAKED_VERSION, true );
+
 	// add fitvid
 	wp_enqueue_script( 'naked-fitvid', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), NAKED_VERSION, true );
 	

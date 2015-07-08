@@ -35,7 +35,7 @@
 </head>
 
 <body 
-	<?php body_class(); 
+	<?php body_class($class); 
 	// This will display a class specific to whatever is being loaded by Wordpress
 	// i.e. on a home page, it will return [class="home"]
 	// on a single post, it will return [class="single postid-{ID}"]
@@ -63,7 +63,7 @@
 		
 		<div class="clear"></div>
 	</div><!--/container -->
-		<nav class="global-nav absolute_bottom">
+		<nav class="global-nav ">
 			<div class="center">
 				<ul>
 				<li class="logo"><a href="<?php echo get_template_directory_uri("/"); ?>"><img src="<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png" /></a></li>

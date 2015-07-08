@@ -23,36 +23,146 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 					<article class="post">
 
 						<?php if (!is_front_page()) : // Only if this page is NOT being used as a home page, display the title ?>
-							<h1 class='title'>
+							<!-- <h1 class='title'>
 								<?php the_title(); // Display the page title ?>
-							</h1>
+							</h1> -->
 						<?php endif; ?>
 										
 						<div class="the-content">
 							<!-- Mockup containers -->
-							<div class="container home">
-								<aside class="greeting">
-									<h1>This is the greeting</h1>
-								</aside>
-							</div>
-							<div class="container fh red">
-								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+							<div class="container">
+								<div class="archive-button">
+									<p>
+										<a href="#">Archives</a>
+									</p>
 								</div>
-							</div>
-							<div class="container fh blue">
-								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+
+								<div class="gallery-gateway">
+
+									<div class="over_white filter button">
+										<a href="#">Filter by industry</a>
+									</div>
+
+									<div class="over_white search-work button">
+										<a href="#">Search Work</a>
+									</div>
+
 								</div>
-							</div>
-							<div class="container fh green">
-								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1><a href="http://localhost:8888/e-tucker/portfolio-of-work/marshallarts/">Marshall Arts Center</a></h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-1.jpg"/>
+									</div>
 								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-2.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-3.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-4.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-4.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-3.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-2.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-1.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-2.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1> <!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-4.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-3.jpg"/>
+									</div>
+								</div>
+
+								<div class="project-tile">
+									<div class="project-tile-overlay over_white">
+										<h1>Look at this</h1><!-- Custom field? -->
+									</div>
+									<div class="project-tile-content">
+										<img src="<?php echo get_template_directory_uri(); ?>/img/project-tile-1.jpg"/>
+									</div>
+								</div>
+
+
 							</div>
+							
 							<!-- ================= -->
 							<?php the_content(); 
 							// This call the main content of the page, the stuff in the main text box while composing.

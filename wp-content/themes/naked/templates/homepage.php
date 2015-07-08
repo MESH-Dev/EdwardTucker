@@ -30,28 +30,49 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 										
 						<div class="the-content">
 							<!-- Mockup containers -->
-							<div class="container home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_1.png')">
-								<aside class="greeting">
+							<div class="container home" id="home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_1.png')">
+								<aside class="greeting over_white">
 									<h1>We design spaces that inspire</h1>
 								</aside>
-							</div>
-							<div class="container fh red">
-								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+								<aside class="homepage-motto over_white">
+									<h2>
+									We thrive on creativity, mutual trust and shared ideas. 
+									This approach has translated into lasting relationships and timeless design.
+									</h2>
+								</aside>
+								<div class="down-container">
+									<div class="down">
+										<a href="#"><img src="<?php echo get_template_directory_uri('/'); ?>/img/arrow-down.png" /></a>
+									</div>
 								</div>
 							</div>
-							<div class="container fh blue">
+							<div class="container fh " id="reputation" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_2.png')">
 								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+									<h2>Our reputation was built by the best minds in the architectural business and we count ourselves fortunate to continue that rich heritage.</h2>
 								</div>
 							</div>
-							<div class="container fh green">
+							<div class="container fh " id="honor" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_3.png')">
 								<div class="callout">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</p>
+									<h2>It has been my honor and privilege to work with such a talented group of folks that are truly dedicated to making a difference in our community.</h2>
 								</div>
+							</div>
+							<div class="container fh " id="salutation"style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_4.png')">
+								<div class="callout">
+									<h2>New title here from Danielle</h2>
+									<div class="center logos">
+										<ul>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+										</ul>
+									</div>
+								</div>
+
 							</div>
 							<!-- ================= -->
 							<?php the_content(); 
