@@ -6,7 +6,7 @@
 
 get_header(); // This fxn gets the header.php file and renders it ?>
 	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
+		<div id="content" role="main" class="span8 offset2 container" style="background:url('http://localhost:8888/e-tucker/wp-content/themes/naked/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;">
 
 			<?php if ( have_posts() ) : 
 			// Do we have any posts in the databse that match our query?
@@ -16,7 +16,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				// If we have a post to show, start a loop that will display it
 				?>
 
-					<article class="post">
+					<article class="post over_white o_container">
 					
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
 						<div class="post-meta">
@@ -52,7 +52,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
-				<article class="post error">
+				<article class="post error project">
 					<h1 class="404">Nothing has been posted like that yet</h1>
 				</article>
 

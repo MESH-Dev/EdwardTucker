@@ -29,46 +29,102 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						<?php endif; ?>
 										
 						<div class="the-content">
-							<!-- Mockup containers -->
-							<div class="container home" id="home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_1.png')">
+							<?php 
+
+								//Add image/greeting/callout to top(home) panel
+								$top_image = get_field('top_panel_background');
+								if ( !empty ($top_image)): ?>
+
+							<div class="container home" id="home" style="background-image:url('<?php echo $top_image['url']?>')">
+							<?php endif; ?>
 								<aside class="greeting over_white">
-									<h1>We design spaces that inspire</h1>
+									<h1><?php echo the_field('top_panel_greeting') ?><i class="fa fa-fw fa-long-arrow-right fa-small" style="font-size:smaller"></i></h1>
 								</aside>
 								<aside class="homepage-motto over_white">
 									<h2>
-									We thrive on creativity, mutual trust and shared ideas. 
-									This approach has translated into lasting relationships and timeless design.
+									<?php echo the_field('top_panel_callout'); ?>
 									</h2>
 								</aside>
+	
 								<div class="down-container">
 									<div class="down">
-										<a href="#"><img src="<?php echo get_template_directory_uri('/'); ?>/img/arrow-down.png" /></a>
+										<a href="#panel_1"><img src="<?php echo get_template_directory_uri('/'); ?>/img/arrow-down.png" /></a>
 									</div>
 								</div>
+
 							</div>
-							<div class="container fh " id="reputation" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_2.png')">
+
+							<?php if (have_rows ('additional_homepage_panels')): //Setup the panels between the top/bottom panels
+								$ctr = 1; //counters always go in this part of the loop, otherwise they won't increment
+							?>
+							<?php while (have_rows ('additional_homepage_panels')) : the_row(); //query the entire (parent) repeater field
+								
+
+								//setup variables
+						         //query sub_fields from the parent field - builds array with all image info
+						         $imageArray = get_sub_field('panel_background');  
+						         //Pull the alt information for the image from our array
+						         $imageAlt = $imageArray['alt']; 
+						         //returns the directory location (url) for the appropriate image, ->
+						         //here the 'panel-fullwidth' size that we set up in our functions file
+						         $imageURL = $imageArray['sizes']['panel-fullwidth']; 
+
+								//Ref custom fields attached to this page
+								$callout = get_sub_field('callout_text');
+								$cta_text = get_sub_field('cta_link_text');
+								$cta_link = get_sub_field('cta_link');
+								$id = get_sub_field('cta_link');
+							?>
+
+							<div class="container fh" id="panel_<?php echo $ctr ?>" style="background-image:url('<?php echo $imageURL ?>')">
 								<div class="callout">
-									<h2>Our reputation was built by the best minds in the architectural business and we count ourselves fortunate to continue that rich heritage.</h2>
+									<h2><?php echo $callout; ?></h2>
+									<div class="callout-link"><a href="<?php echo $cta_link ?>"><?php echo $cta_text; ?></a></p></div>
 								</div>
 							</div>
-							<div class="container fh " id="honor" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_3.png')">
+							
+							<?php $ctr++; endwhile; ?>
+
+							<?php else: ?>
+
+							<?php endif; //end loop ?>
+
+							<?php //setup the bottom panel
+
+								$bottom_image = get_field('bottom_panel_background');
+								if ( !empty ($bottom_image)):
+
+							?>
+							<div class="container fh " id="bottom-panel" style="background-image:url('<?php echo $bottom_image['url']?>')">
+
+							<?php 
+								else:
+							?>
+									<div class="warning"><h1>No image has been added to this field yet.  Please check your post </h1></div>
+							<?php
+								endif; 
+							?>
 								<div class="callout">
-									<h2>It has been my honor and privilege to work with such a talented group of folks that are truly dedicated to making a difference in our community.</h2>
-								</div>
-							</div>
-							<div class="container fh " id="salutation"style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_4.png')">
-								<div class="callout">
-									<h2>New title here from Danielle</h2>
+									<h2><?php echo the_field('bottom_panel_title')?></h2>
 									<div class="center logos">
 										<ul>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
+											<?php if (have_rows ('bottom_panel_links')): //setup the bottom panel link list loop ?>
+											<?php while (have_rows ('bottom_panel_links')) : the_row(); 
+
+												//var setup
+												$bp_img = get_sub_field('bp_link_image');
+												$bp_link = get_sub_field('bp_link');
+
+											?>
+											<li>
+												<a href="<?php echo $bp_link?>"><img class="this_is_the_list_loop" src="<?php echo $bp_img['url']?>" /></a>
+
+											</li>
+
+											<?php endwhile; ?>
+											<?php else: ?>
+											<?php endif; ?>
+											
 										</ul>
 									</div>
 								</div>

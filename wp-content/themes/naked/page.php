@@ -1,13 +1,15 @@
 <?php
 /**
  * The template for displaying any single page.
- *
+ * ie default
  */
 
 get_header(); // This fxn gets the header.php file and renders it ?>
+	<div class="page-bg" style="background:url('http://localhost:8888/e-tucker/wp-content/themes/naked/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
 	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
+		<div id="content" role="main" class="span8 offset2 container default" >
 
+			<!--Loop -->
 			<?php if ( have_posts() ) : 
 			// Do we have any posts/pages in the databse that match our query?
 			?>
@@ -17,10 +19,11 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				?>
 
 					<article class="post">
-					
-						<h1 class="title"><?php the_title(); // Display the title of the page ?></h1>
 						
-						<div class="the-content">
+						<div class="the-content over_white" style="width:60%; margin-left:30%; margin-top:1em; padding:1.5em;">
+
+							<h1 class="title"><?php the_title(); // Display the title of the page ?></h1>
+
 							<?php the_content(); 
 							// This call the main content of the page, the stuff in the main text box while composing.
 							// This will wrap everything in p tags
@@ -34,7 +37,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				<?php endwhile; // OK, let's stop the page loop once we've displayed it ?>
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
-				
+			<!-- End loop -->		
 				<article class="post error">
 					<h1 class="404">Nothing posted yet</h1>
 				</article>

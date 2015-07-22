@@ -35,7 +35,7 @@
 </head>
 
 <body 
-	<?php body_class($class); 
+	<?php body_class(); 
 	// This will display a class specific to whatever is being loaded by Wordpress
 	// i.e. on a home page, it will return [class="home"]
 	// on a single post, it will return [class="single postid-{ID}"]
@@ -65,36 +65,41 @@
 	</div><!--/container -->
 		<nav class="global-nav ">
 			<div class="center">
+				
 				<ul>
-				<li class="logo"><a href="<?php echo get_template_directory_uri("/"); ?>"><img src="<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png" /></a></li>
-				<li>	
-					<?php
+					<li class="logo"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png" /></a></li>
+					<li class="nav-list">	
+						<div class="mobile-only sidr-close"><i class="fa fa-fw fa-close"></i></div>
+						<?php
 
-							$defaults = array(
-								'theme_location'  => '',
-								'menu'            => '',
-								'container'       => 'div',
-								'container_class' => '',
-								'container_id'    => '',
-								'menu_class'      => 'menu',
-								'menu_id'         => '',
-								'echo'            => true,
-								'fallback_cb'     => 'wp_page_menu',
-								'before'          => '',
-								'after'           => '',
-								'link_before'     => '',
-								'link_after'      => '',
-								'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-								'depth'           => 0,
-								'walker'          => ''
-							);
+								$defaults = array(
+									'theme_location'  => '',
+									'menu'            => '',
+									'container'       => 'div',
+									'container_class' => '',
+									'container_id'    => '',
+									'menu_class'      => 'menu',
+									'menu_id'         => 'desktop-only',
+									'echo'            => true,
+									'fallback_cb'     => 'wp_page_menu',
+									'before'          => '',
+									'after'           => '',
+									'link_before'     => '',
+									'link_after'      => '',
+									'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+									'depth'           => 0,
+									'walker'          => ''
+								);
 
-							wp_nav_menu( $defaults );
+								wp_nav_menu( $defaults );
 
-					?>
-				</li>
-			</ul>
+						?>
+					</li>
+				</ul>
+				<div class="mobile-nav-trigger mobile-only">
+				<a href="#sidr-main" id="responsive-menu-button" class="fa fa-fw fa-bars fa-2x"></a>
 				</div>
+			</div>
 			</nav>
 </header><!-- #masthead .site-header -->
 

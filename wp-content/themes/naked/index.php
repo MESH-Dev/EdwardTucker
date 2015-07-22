@@ -6,8 +6,9 @@
  */
 
 get_header(); // This fxn gets the header.php file and renders it ?>
+<div class="page-bg" style="background:url('http://localhost:8888/e-tucker/wp-content/themes/naked/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
 	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
+		<div id="content" role="main" class="span8 offset2 container over_white o_container blog" >
 
 			<?php if ( have_posts() ) : 
 			// Do we have any posts in the databse that match our query?
@@ -65,7 +66,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
-				<article class="post error">
+				<article class="post error" style="background:cyan">
 					<h1 class="404">Nothing has been posted like that yet</h1>
 				</article>
 

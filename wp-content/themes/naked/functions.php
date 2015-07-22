@@ -1,60 +1,102 @@
 <?php
-	/*-----------------------------------------------------------------------------------*/
-	/* This file will be referenced every time a template/page loads on your Wordpress site
-	/* This is the place to define custom fxns and specialty code
-	/*-----------------------------------------------------------------------------------*/
 
-// Define the version so we can easily replace it throughout the theme
-define( 'NAKED_VERSION', 1.0 );
+//enqueue scripts and styles *use production assets. Dev assets are located in assets/css and assets/js
+function loadup_scripts() {
+	//wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/mesh.js', array('jquery'), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'loadup_scripts' );
 
-/*-----------------------------------------------------------------------------------*/
-/* Add Rss feed support to Head section
-/*-----------------------------------------------------------------------------------*/
-add_theme_support( 'automatic-feed-links' );
+// Add Thumbnail Theme Support
+add_theme_support('post-thumbnails');
+add_image_size('panel-fullwidth', 1800, 1200, true);
 
+add_image_size('large', 700, '', true); // Large Thumbnail
+add_image_size('medium', 250, '', true); // Medium Thumbnail
+add_image_size('small', 120, '', true); // Small Thumbnail
+add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+add_image_size('square', 500, 500, true);
 
-/*-----------------------------------------------------------------------------------*/
-/* Register main menu for Wordpress use
-/*-----------------------------------------------------------------------------------*/
-register_nav_menus( 
-	array(
-		'primary'	=>	__( 'Primary Menu', 'naked' ), // Register the Primary menu
-		// Copy and paste the line above right here if you want to make another menu, 
-		// just change the 'primary' to another name
-	)
+//Register WP Menus
+register_nav_menus(
+    array(
+        'main_nav' => 'Header and breadcrumb trail heirarchy',
+        'social_nav' => 'Social menu used throughout'
+    )
 );
 
-/*-----------------------------------------------------------------------------------*/
-/* Activate sidebar for Wordpress use
-/*-----------------------------------------------------------------------------------*/
-function naked_register_sidebars() {
-	register_sidebar(array(				// Start a series of sidebars to register
-		'id' => 'sidebar', 					// Make an ID
-		'name' => 'Sidebar',				// Name it
-		'description' => 'Take it on the side...', // Dumb description for the admin side
-		'before_widget' => '<div>',	// What to display before each widget
-		'after_widget' => '</div>',	// What to display following each widget
-		'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
-		'after_title' => '</h3>',		// What to display following each widget's title
-		'empty_title'=> '',					// What to display in the case of no title defined for a widget
-		// Copy and paste the lines above right here if you want to make another sidebar, 
-		// just change the values of id and name to another word/name
-	));
-} 
-// adding sidebars to Wordpress (these are created in functions.php)
-add_action( 'widgets_init', 'naked_register_sidebars' );
+// Register Widget Area for the Sidebar
+register_sidebar( array(
+    'name' => __( 'Primary Widget Area', 'Sidebar' ),
+    'id' => 'primary-widget-area',
+    'description' => __( 'The primary widget area', 'Sidebar' ),
+    'before_widget' => '',
+    'after_widget' => '',
+    'before_title' => '<h3>',
+    'after_title' => '</h3>',
+) );
+
+//disable code editors
+add_theme_support('html5');
+add_theme_support('automatic-feed-links');
+
+//Security and header clean-ups
+remove_action( 'wp_head', 'wlwmanifest_link');
+remove_action( 'wp_head', 'rsd_link');
+remove_action( 'wp_head', 'index_rel_link' ); // index link
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
+remove_action( 'wp_head', 'wp_generator'); // remove WP version from header
+remove_action( 'wp_head','wp_shortlink_wp_head');
+
+
+/**
+ * Add custom taxonomies
+ *
+ * Additional custom taxonomies can be defined here
+ * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+// function add_custom_taxonomies() {
+//   // Add new "Project Type" taxonomy to Posts
+//   register_taxonomy('project', 'post', array(
+//     // Hierarchical taxonomy (like categories)
+//     'hierarchical' => true,
+//     // This array of options controls the labels displayed in the WordPress Admin UI
+//     'labels' => array(
+//       'name' => _x( 'Project Types', 'taxonomy general name' ),
+//       'singular_name' => _x( 'Project Type', 'taxonomy singular name' ),
+//       'search_items' =>  __( 'Search Project Types' ),
+//       'all_items' => __( 'All Project Types' ),
+//       'parent_item' => __( 'Parent Location' ),
+//       'parent_item_colon' => __( 'Parent Type:' ),
+//       'edit_item' => __( 'Edit Project Type' ),
+//       'update_item' => __( 'Update Project Type' ),
+//       'add_new_item' => __( 'Add New Project Type' ),
+//       'new_item_name' => __( 'New Project Type Name' ),
+//       'menu_name' => __( 'Projects' ),
+//     ),
+//     // Control the slugs used for this taxonomy
+//     'rewrite' => array(
+//       'slug' => 'projects', // This controls the base slug that will display before each term
+//       'with_front' => false, // Don't display the category base before "/projects/"
+//       'hierarchical' => true // This will allow URL's like "/projects/boston/cambridge/"
+//     ),
+//   ));
+// }
+// add_action( 'init', 'add_custom_taxonomies', 0 );
+
+// Register Custom Post Type
 
 
 // //Add specific CSS class by filter
 
-function my_class_names( $classes ) {
-	// add 'class-name' to the $classes array
-	$classes[] = 'projects';
-	// return the $classes array
-	return $classes;
-}
+// function my_class_names( $classes ) {
+// 	// add 'class-name' to the $classes array
+// 	$classes[] = 'projects';
+// 	// return the $classes array
+// 	return $classes;
+// }
 
-add_filter( 'body_class', 'my_class_names' );
+// add_filter( 'body_class', 'my_class_names' );
 
 //Page Slug Body Class
 function add_slug_body_class( $classes ) {
@@ -66,6 +108,121 @@ return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
+add_action('wp_head','pluginname_ajaxurl');
+function pluginname_ajaxurl() {
+?>
+<script type="text/javascript">
+var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+</script>
+<?php
+}
+
+add_action('wp_ajax_get_projects', 'get_projects');
+add_action('wp_ajax_nopriv_get_projects', 'get_projects');
+
+function get_projects(){
+
+  $post_slug = $_POST['projectType'];
+
+
+  $args = array(
+  'post_type' => 'projects',
+  'tax_query' => array(
+    array(
+      'taxonomy' => 'project_type',
+      'field'    => 'slug',
+      'terms'    => $post_slug
+    ),
+  ),
+);
+
+
+        // the query
+      // echo '<div class="container '.$profile_class .'" id="project-gallery">';
+      
+        $the_query = new WP_Query( $args ); 
+
+        $count = $the_query->found_posts;
+        $profile_class = 'four-col';
+        //echo $count;
+
+        //echo '<h1>' . $count . '</h1>';
+
+        if ($count <= 4):
+          $profile_class = 'two-col';
+
+        elseif ($count < 9 && $count > 4):
+          $profile_class = 'three-col';
+
+        endif;
+
+       if ( $the_query->have_posts() ) : 
+      // Do we have any posts in the databse that match our query?
+      // In the case of the home page, this will call for the most recent posts 
+      
+
+        //echo '<div class="container '.$profile_class .'" id="project-gallery">';
+
+         while ( $the_query->have_posts() ) : $the_query->the_post(); 
+        // If we have some posts to show, start a loop that will display each one the same way
+        
+        
+
+         if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
+
+
+                 $image = get_field('project_gallery'); //The top level field
+                     $topImage = $image[0];
+                     $firstrowimagefield = $topImage['project_images']; //The subrow (project_images)
+                     $topImageURL = $firstrowimagefield['sizes']['square'];
+                     $permalink = get_permalink();
+                    $title = get_the_title();
+                
+              
+          endif; 
+
+
+          echo '<article class="post project-tile ' . $profile_class .'">
+            <div class="project-tile-overlay over_white">
+              <h1 class="title">
+                <a href="' . $permalink . '" title="' . $title .'">
+                  ' . $title . '
+                </a>
+              </h1>
+            </div>
+            <div class="project-tile-content">
+              <img src="' .$topImageURL . '" />
+            </div>
+            
+            
+          </article>';
+
+         endwhile; 
+        
+
+
+       else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
+        
+        echo '<article class="post error" style="background:cyan">
+          <h1 class="404">Nothing has been posted like that yet</h1>
+        </article>';
+
+       endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
+
+       die();
+
+}
+
+
+// function codex_custom_init() {
+//     $args = array(
+//       'public' => true,
+//       'label'  => 'Project'
+//     );
+//     register_post_type( 'projects', $args );
+// }
+// add_action( 'init', 'codex_custom_init' );
+
 /*-----------------------------------------------------------------------------------*/
 /* Enqueue Styles and Scripts
 /*-----------------------------------------------------------------------------------*/
@@ -75,20 +232,27 @@ function naked_scripts()  {
 	// get the theme directory style.css and link to it in the header
 	//wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', '10000', 'all' );
 	wp_enqueue_style( 'naked-style', get_template_directory_uri() . '/css/main.css', '10000', 'all' );
-	
-	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', NAKED_VERSION, true );		
 
-	wp_enqueue_script( 'naked-fitvid', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', array( 'jquery' ), NAKED_VERSION, true );		
+	wp_enqueue_style( 'sidr-style', get_template_directory_uri() . '/css/jquery.sidr.dark.css', '10000', 'all' );
+	
+	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', NAKED_VERSION, true );	
+	wp_enqueue_style( 'animate', '//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css', NAKED_VERSION, true );	
+
+	wp_enqueue_script( 'naked-fitvid', '//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js', array( 'jquery' ), NAKED_VERSION, true );		
+	wp_enqueue_script( 'easing', '//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js', array( 'jquery' ), NAKED_VERSION, true );
 
 	wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), NAKED_VERSION, true );
 
 	wp_enqueue_script( 'parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array( 'jquery' ), NAKED_VERSION, true );
+	wp_enqueue_script( 'ST', get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js', array( 'jquery' ), NAKED_VERSION, true );
+	wp_enqueue_script( 'localS', get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js', array( 'jquery' ), NAKED_VERSION, true );
+	wp_enqueue_script( 'sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'jquery' ), NAKED_VERSION, true );
 
 	// add fitvid
-	wp_enqueue_script( 'naked-fitvid', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), NAKED_VERSION, true );
+	//wp_enqueue_script( 'naked-fitvid', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), NAKED_VERSION, true );
 	
 	// add theme scripts
-	wp_enqueue_script( 'naked', get_template_directory_uri() . '/js/theme.min.js', array(), NAKED_VERSION, true );
+	//wp_enqueue_script( 'naked', get_template_directory_uri() . '/js/theme.min.js', array(), NAKED_VERSION, true );
   
 }
 add_action( 'wp_enqueue_scripts', 'naked_scripts' ); // Register this fxn and allow Wordpress to call it automatcally in the header

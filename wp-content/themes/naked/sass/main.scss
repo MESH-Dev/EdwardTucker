@@ -12,11 +12,41 @@ $green:#0000ff;
 $footer_bg:#2b2b2b;
 $gn_links:#a4a4a4;
 $callout_text: #55595f;
+$hf_links: #a4a4a4;
 
 
 /*Fonts*/
 /*============================================*/
 $et_font:'Roboto', sans-serif;
+
+/*Ala Carte*/
+/*============================================*/
+
+.alignLeft{
+  float:left;
+  clear:both;
+}
+
+.alignRight{
+  float:right;
+}
+
+.absolute_top{
+  top:0;
+  position:fixed;
+}
+
+.absolute_bottom{
+  position:absolute; 
+  bottom:0;}
+
+.fixed{
+  position:fixed; 
+  bottom:0;}
+
+.hide{
+  display:none;
+}
 
 /*Layout*/
 /*============================================*/
@@ -28,12 +58,16 @@ body{
   font-family:$et_font;
 }  
 
-body, html{
-  width:100%; 
-  height:100%;
+// body, html{
+//   width:100%; 
+//   height:100%;
+// }
+
+p{
+  padding-bottom:1em;
 }
 
-li{display:inline-block;}
+li{display:inline-block; }
 
 a {
 
@@ -49,19 +83,69 @@ a {
 
 }
 
+h1{
+  font-size:2.25em;
+}
+
+h2{
+  font-size:2em;
+}
+
+h3{
+  font-size:1.75em;
+}
+
+h4{
+  font-size:1.5em;
+}
+
+.the-content{
+
+  img{
+    padding:0 1em;
+  }
+
+  h2, h3, h4{
+    padding-bottom:20px;
+  }
+
+  h2, h3, h4, h5, h6{
+    clear:none;
+  }
+
+  p{
+    line-height:1.4;
+  }
+
+}
+
+h1.title{
+  font-size:2.25em;
+  font-weight:300;
+  margin:.5em 0;
+}
+
 .row{position:relative;
 
   &:after, &:before{
     display:table; 
-    content:" ";}
-}
-
-.container{height:100%; position:relative;
-  
-  &:after, &:before{
-    display:table; 
     content:" ";
   }
+
+  &:after{
+    clear:both;
+  }
+}
+
+.container{
+  height:100%;
+  min-height:100%; 
+  position:relative;
+  
+  // &:after, &:before{
+  //   display:table; 
+  //   content:" ";
+  // }
   
   &.blue{
     background:$blue;
@@ -77,13 +161,10 @@ a {
 
 }
 
-.absolute_bottom{
-  position:absolute; 
-  bottom:0;}
-
-.fixed{
-  position:fixed; 
-  bottom:0;}
+.container.default, .container.blog{
+  height:auto;
+  margin-bottom:130px;
+}
 
 nav.global-nav{
   background:$footer_bg; 
@@ -126,9 +207,15 @@ nav.global-nav{
   height:100%;
   width:50%;
 
+  .fa{
+    color:#b3b3b3;
+    font-size:.75em
+  }
+
   h2{
-    font-size:2.75em;
+    font-size:2.5em;
     padding-top:150px;
+    line-height:1.25;
   }
 
 }
@@ -188,17 +275,35 @@ nav.global-nav{
     font-size:4em; 
     padding-top:150px; 
     padding-left:1em; 
-    font-weight:100;}
+    font-weight:100;
+    line-height:1.2;
+
+    //&:after{
+      //content:" \2192";
+    //}
   }
 
-.title{
+
+
+  }
+
+.o_container{
+  width:60%;
+  margin-left:30%;
+  margin-top:1em;
+  padding:1.5em;
+
+}
+
+.project-intro{
   position:absolute; 
-  top:10em;
+  top:7em;
   height:400px
 }
 
 .projects-nav{
   width:100px; 
+  height:100%;
   padding:1em; 
   float:left;
   text-transform:uppercase;
@@ -220,6 +325,8 @@ nav.global-nav{
 .project-overview{
   width:35%; 
   padding:1em; 
+  height:auto;
+  min-height:100%;
 
   h1{
     font-size:3em;
@@ -231,9 +338,10 @@ nav.global-nav{
 
   .acheivement{
     display:table;
-    position:absolute;
+    //position:absolute;
     bottom:1em;
     left:1em;
+    margin:1em;
     background:black;
     color:white;
     border-radius:50%;
@@ -253,15 +361,14 @@ nav.global-nav{
 
 .project-overview, .projects-nav{
   float:left;
-  height:100%;
   margin-right:.75em;
   position:relative;
 }
 
 .project-tile{
-  width:25%; 
+  //width:25%; 
   float:left; 
-  padding-bottom:25%; 
+  //padding-bottom:25%; 
   position:relative;
 
   img{
@@ -269,6 +376,23 @@ nav.global-nav{
     height:auto;}
 
 }
+
+.project-tile.four-col{
+  width:25%;
+  padding-bottom:25%;
+}
+
+.project-tile.two-col {
+  width:50%;
+  padding-bottom:50%;
+}
+
+.project-tile.three-col{
+  width:33.333%;
+  padding-bottom:33.333%;
+}
+
+
 
 .project-tile-content{
   position:absolute; 
@@ -292,7 +416,9 @@ nav.global-nav{
 
   h1{
     font-size:2.25em; 
-    text-transform:uppercase;}
+    text-transform:uppercase;
+    font-weight:100;
+  }
 
   &:hover{
     opacity:1;
@@ -304,24 +430,27 @@ nav.global-nav{
   position:absolute; 
   bottom:0; 
   background:white; 
-  height:30%; 
-  padding-top: 3em; 
+  //height:30%; 
+  padding: 5% 0 7%; 
   width:100%; 
   text-align:center !important; 
   color: $callout_text;
 
   h2{
-    width:80%; 
+    width:70%; 
     text-align:center !important; 
     margin:0 auto; 
     font-size:2.5em;
+    //padding-top:1.5em;
   }
 
   .callout-link{
+    padding-top:1.25em;
 
     a{
     color: #b3b3b3;
     text-transform:uppercase;
+    font-size:1.25em;
     }
 
     &:hover{
@@ -331,8 +460,16 @@ nav.global-nav{
   }
 }
 
+.button .fa{
+  margin-bottom:1em; 
+}
+
 .page-portfolio-of-work .the-content{
   margin-bottom:2em;
+}
+
+.projects .the-content{
+  margin-bottom:6em;
 }
 
 .center{
@@ -349,6 +486,11 @@ footer {
     margin-right:1em;
   }
 
+  p{
+    margin:0;
+    padding:0;
+  }
+
   .copyright{
     position:absolute; 
     right:1em; 
@@ -361,8 +503,122 @@ footer {
   margin:2em 0;
 
   li{
-    margin-right:3em;
+    margin:0 1.5em;
   }
 
 }
 
+.global-nav-mobile{
+  display:none;
+  visibility:hidden;
+}
+
+.mobile-nav-trigger{
+  position: absolute;
+  right: 1em;
+  z-index: 60000;
+  top: .5em;
+}
+
+#sidr-close, .sidr-close{
+  text-align:right;
+  padding:.5em;
+  cursor:pointer;
+}
+
+a.fa-bars{
+  color:$hf_links;
+}
+
+header .sidr-close{
+  display:none;
+  visibility: hidden;
+}
+
+// Responsive hooks for jquery
+.mobile-only{
+  display:none;
+  visibility:hidden;
+}
+
+@media only screen and (max-width: 480px){
+  .global-nav .center{
+    text-align:left; padding-left:1em;
+  }
+
+  .global-nav-mobile{
+    display:block;
+    visibility: visible;
+  }
+
+  header #desktop-only{
+    display:none;
+    visibility:hidden;
+  }
+
+  .mobile-only{
+    display:block;
+    visibility:visible;
+  }
+
+  .callout{
+
+    h2{
+      font-size:1.5em;
+      width:90%
+    }
+
+    .callout-link{
+
+      a{
+      font-size:1.15em;
+      }
+    }
+
+  }
+
+  .homepage-motto{
+    //background:white !important;
+    width:100%;
+    position:absolute;
+    z-index:400;
+    margin:0;
+
+    h2{
+      text-align:center;
+      padding-left:1em;
+      padding-right:1em;
+      font-size:2em;
+
+    }
+  }
+
+  .project-tile{
+    width:100%;
+    padding-bottom:100%;
+    margin:0 auto;
+  }
+
+  .project-overview{
+    width:80%;
+    float:none;
+    margin:0 auto;
+    height:auto;
+
+    .acheivement{
+    position:relative;
+    bottom:0;
+    left:0;
+    }
+
+  }
+
+  footer {
+    text-align:center;
+
+    .copyright{
+    position:relative;
+    }
+  }
+
+}

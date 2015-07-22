@@ -31,19 +31,23 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						<div class="the-content">
 							<!-- Mockup containers -->
 							<div class="container">
-								<div class="archive-button">
+								<!-- As of 7/14/15, "Archive" will not be used -->
+								<!-- Commenting this out, rather than deleting, for future dev -->
+								<!-- <div class="archive-button">
 									<p>
 										<a href="#">Archives</a>
 									</p>
-								</div>
+								</div> -->
 
 								<div class="gallery-gateway">
 
 									<div class="over_white filter button">
+										<i class="fa fa-fw fa-arrow-left pull-left"></i>
 										<a href="#">Filter by industry</a>
 									</div>
 
 									<div class="over_white search-work button">
+										<i class="fa fa-fw fa-search pull-left"></i>
 										<a href="#">Search Work</a>
 									</div>
 

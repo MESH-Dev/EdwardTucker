@@ -30,13 +30,17 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 										
 						<div class="the-content">
 							<!-- Mockup containers -->
-							<div class="container home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/e_tucker_background_1.png')">
-								<div class="title">
-								<aside class="projects-nav over_white">
+							<div class="container home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall_1.png')">
+								<div class="project-intro">
+								<aside class="projects-nav over_white desktop-only">
 									<i class="fa fa-fw fa-arrow-left pull-right" style="padding-left:.5em;"></i>
-									<a href="#">Back To All Work</a> 
+									<a href="<?php echo site_url(); ?>/portfolio-of-work">Back To All Work</a> 
 								</aside>
 								<aside class="project-overview over_white">
+									<p class="mobile-only">
+										<i class="fa fa-fw fa-arrow-left"></i>
+										<a href="<?php echo site_url(); ?>/portfolio-of-work">Back to all work</a>
+									</p>
 									<h1>Marshall Arts Center</h1>
 									<p>TYPE, Date, other tags<br>
 										Body Copy: Marshall Arts Center Marshall Arts Center Marshall Arts Center Marshall Arts Center 
@@ -50,20 +54,20 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 								</aside>
 								</div>
 							</div>
-							<div class="container fh red">
-								<div class="callout">
+							<div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall-5.jpg')">
+								<!-- <div class="callout">
 									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
-								</div>
+								</div> -->
 							</div>
-							<div class="container fh blue">
-								<div class="callout">
+							<div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall_3.jpg')">
+								<!-- <div class="callout">
 									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
-								</div>
+								</div> -->
 							</div>
-							<div class="container fh green">
-								<div class="callout">
+							<div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall_4.jpg')">
+								<!-- <div class="callout">
 									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
 									<div class="center logos">
@@ -78,7 +82,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
 										</ul>
 									</div>
-								</div>
+								</div> -->
 
 							</div>
 							<!-- ================= -->

@@ -52,7 +52,7 @@ module.exports = function (grunt) {
            },
            options: {
              watchTask: true,
-             proxy: "localhost/e-tucker"
+             proxy: "localhost:8888/e-tucker"
            }
          }
        }
@@ -66,5 +66,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // tasks that will be triggered with [grunt] in the cli
-    grunt.registerTask('default', ['compass', 'browserSync', 'concat:js', 'uglify:js']);
+    grunt.registerTask('default', ['compass', 'browserSync', 'watch' ]); //'concat:js','uglify:js', 'watch']);
 };
