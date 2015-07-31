@@ -8,8 +8,13 @@
 get_header(); // This fxn gets the header.php file and renders it ?>
 <div class="page-bg" style="background:url('http://localhost:8888/e-tucker/wp-content/themes/naked/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
 	<div id="primary" class="row-fluid">
+		<div class="blog-nav over_white">
+			<div class="title">The news</div>
+			<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
+		</div>
 		<div id="content" role="main" class="span8 offset2 container over_white o_container blog" >
-
+			<h2>News</h2>
+			<?php get_search_form(); ?>
 			<?php if ( have_posts() ) : 
 			// Do we have any posts in the databse that match our query?
 			// In the case of the home page, this will call for the most recent posts 
@@ -21,11 +26,12 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 					<article class="post">
 					
-						<h1 class="title">
+						<h3 class="title">
 							<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
 								<?php the_title(); // Show the title of the posts as a link ?>
 							</a>
-						</h1>
+						</h3>
+
 						<div class="post-meta">
 							<?php the_time('m/d/Y'); // Display the time published ?> | 
 							<?php if( comments_open() ) : // If we have comments open on this post, display a link and count of them ?>
@@ -46,8 +52,9 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
+							<a href="<?php echo get_permalink(); ?>"> Read More...</a>
 						</div><!-- the-content -->
-		
+						
 						<div class="meta clearfix">
 							<div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div>
 							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>

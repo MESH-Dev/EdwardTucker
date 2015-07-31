@@ -20,7 +20,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 					<article class="post">
 						
-						<div class="the-content over_white" style="width:60%; margin-left:30%; margin-top:1em; padding:1.5em;">
+						<div class="the-content over_white">
 
 							<h1 class="title"><?php the_title(); // Display the title of the page ?></h1>
 

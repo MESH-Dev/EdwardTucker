@@ -8,39 +8,11 @@ $(document).ready(function(){
 	// var bodyH = $('body').height();
 	// var windowW = $(window).width();
 	// var footerH = $('footer').height();
-
-	// function $resize(){
 	var width = $( window ).width();
 
-	$('.homepage-motto').addClass('hide')
+	//$('.homepage-motto').addClass('hide')
 
-	//$('.homepage-motto h2').css({opacity: 0});
-	// $('.greeting').hover(function(){
-	// 	$('.homepage-motto')
-	// 		.removeClass('hide')
-	// 		.toggleClass('slideInLeft animated');
-	// 		//.toggleClass('slideOutLeft');
-	// });
-
-	// $('.greeting').toggle(
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('hide slideOutLeft')
-	// 			.addClass('slideInLeft animated')
-	// 			.css({opacity: 1});
-	// 			console.log( "mouse has hovered" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(400).animate({opacity: 1});		
-	// 	},
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('slideInLeft')
-	// 			.addClass('slideOutLeft')
-	// 			.delay(200).animate({opacity: 0});
-	// 			console.log( "mouse has left" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(100).animate({opacity: 0});
-	// 	});
+	//$('.greeting, .homepage-motto').attr('tabindex', '0');		
 	
 	// Special function from https://jsfiddle.net/s376u4zn/ to bind event to alternate clicks
 	$.fn.toggleClick = function () {
@@ -54,125 +26,169 @@ $(document).ready(function(){
     	})
 	}
 
-	// $('.greeting').toggleClick( 
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('hide slideOutLeft')
-	// 			.addClass('slideInLeft animated')
-	// 			.css({opacity: 1}, 1200);
-	// 			console.log( "mouse has hovered" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(400).animate({opacity: 1});
-				
-	// 	},
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('slideInLeft')
-	// 			.addClass('slideOutLeft')
-	// 			.delay(700).animate({opacity: 0}, 500);
-	// 			console.log( "mouse has left" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(50).animate({opacity: 0});
-	// 	});
+	//On large screens, implements interaction on ".greeting"
+	function g_slide_lg (){
 
-	//Version of the function above to account for mouseover rather than click
-	//Use only in the case that we don't want mouseover for some reason...
+		$('.homepage-motto')
+				.removeClass('hide slideOutLeft')
+				.addClass('slideInLeft animated')
+				.css({opacity: 1}, 1200);
+			$('.homepage-motto h2, .close')
+				.delay(400).animate({opacity: 1});
+	}
 
-	//========================================================================
-	// $('.greeting').bind(
-	// 	"mouseover", 
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('hide slideOutLeft')
-	// 			.addClass('slideInLeft animated')
-	// 			.css({opacity: 1});
-	// 			console.log( "mouse has hovered" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(400).animate({opacity: 1});
-				
-	// 	})
-	// 	.bind(
-	// 	"mouseout", 
-	// 	function(){
-	// 		$('.homepage-motto')
-	// 			.removeClass('slideInLeft')
-	// 			.addClass('slideOutLeft')
-	// 			.delay(200).animate({opacity: 0});
-	// 			console.log( "mouse has left" );
-	// 		$('.homepage-motto h2')
-	// 			.delay(100).animate({opacity: 0});
-	// 	});
-	//========================================================================
-	
+	function g_slide_sm (){
+		$('.greeting')
+				.addClass('slideOutLeft animated')
+				//.delay(700).animate({opacity: 0}, 500);
+			$('.homepage-motto')
+				.removeClass('hide slideOutLeft')
+				.addClass('slideInLeft animated')
+				.animate({opacity: 1}, 1200);
+				//console.log( "mouse has hovered" );
+			$('.homepage-motto h2')
+				.delay(400).animate({opacity: 1});
+	}
 
-	// if ( width > 480) {
+	function hm_slide_lg (){
+		$('.homepage-motto')
+				.removeClass('slideInLeft')
+				.addClass('slideOutLeft')
+				.delay(700).animate({opacity: 0}, 500);
+				console.log( "mouse has left" );
+			$('.homepage-motto h2, .close')
+				.delay(50).animate({opacity: 0});
+	}
 
-	// 	console.log('Whatever')
-	// 	$(window).scroll(function(){
-			
+	function hm_slide_sm (){
+		
+	}
 
-
-	// 		var windowTop = $(window).scrollTop();
-	// 		var windowH = $(window).height();
-	// 		var documentH = $(document).height();
-	// 		var footerTop = $('footer').offset().top;
-			
-	// 		if (windowTop > 0){
-	// 			$('.global-nav').addClass('fixed').removeClass('absolute_bottom');
-	// 		}
-	// 		else if(windowTop <= 0){
-	// 			$('.global-nav').removeClass('fixed').addClass('absolute_bottom');
-	// 		}
-	// 		else if( footerH < windowTop ){
-	// 			$('.global-nav').addClass('bottom');
-	// 			alert ("You have reached the bottom of the document");
-	// 		}
-	// 	});
-	// }
-
-	// else if ( width < 480){
-	// 	console.log('Whatever else')
-	// 	$('.global-nav').removeClass('absolute_bottom').addClass('absolute_top')
-	// 	// $('.global-nav').css({top : 0})
-	// }
-
-	// }
-	
-	// $(window).resize($resize);
-	// $resize();
-
-	// $('body').append('<div class="document-height">' + documentH + '</div>');
-	// $('body').append('<div class="total-height">' + bottom + '</div>');
-	// $('body').append('<div class="body-height">' + bodyH + '</div>');
-	// $('body').append('<div class="window-width">' + windowW + '</div>');
-
-// function _resize(){
+	//Shows the project description after 
+	setTimeout(function(){
+		$('.project-overview')
+			.removeClass('hide slideOutLeft')
+			.addClass('slideInLeft animated')
+			.animate({opacity: 1}, 1500);
+		// $('.project-overview h1, .project-overview p, .project-overview .acheivement')
+		// 	.animate({opacity: 1}, 1500);
+	}, 600);
 
 	var width = $( window ).width();
 
 	if ( width > 481) {
-		$('.global-nav').addClass('fixed');
+		//$('.global-nav').addClass('fixed');
 
-		$('.greeting').toggleClick( 
-		function(){
+		// $('.greeting').click(g_slide_lg);
+		// $('.greeting').keypress(g_slide_lg);
+
+		// $('.homepage-motto').click(hm_slide_lg);
+		// $('.homepage-motto').keypress(hm_slide_lg);
+
+		$('.greeting').hover(function(){
 			$('.homepage-motto')
 				.removeClass('hide slideOutLeft')
 				.addClass('slideInLeft animated')
 				.css({opacity: 1}, 1200);
-				console.log( "mouse has hovered" );
-			$('.homepage-motto h2')
+			$('.homepage-motto h2, .close')
 				.delay(400).animate({opacity: 1});
-				
-		},
-		function(){
+		},function(){
 			$('.homepage-motto')
 				.removeClass('slideInLeft')
 				.addClass('slideOutLeft')
 				.delay(700).animate({opacity: 0}, 500);
 				console.log( "mouse has left" );
-			$('.homepage-motto h2')
+			$('.homepage-motto h2, .close')
 				.delay(50).animate({opacity: 0});
+		}
+		);
+
+		 //$('.projects-nav.gallery').addClass('hide');
+
+		$('.filter.button').click(function(){
+			$('.gallery-gateway')
+				.addClass('slideOutLeft animated')
+				.removeClass('slideInLeft');
+			$('.projects-nav.gallery')
+				.removeClass('hide slideOutLeft')
+				.addClass('slideInLeft animated');
+			});
+
+		$('.projects-nav.gallery .close').click(function(){
+			$('.gallery-gateway')
+				.removeClass('slideOutLeft')
+				.addClass('slideInLeft');
+			$('.projects-nav.gallery')
+				.removeClass("slideInLeft")
+				.addClass('slideOutLeft');
 		});
+
+		//$('.search').addClass('hide');
+
+		$('.search-work.button').toggleClick(
+			function(){
+			$('.search')
+				.removeClass('hide slideOutLeft')
+				.addClass('table slideInLeft animated')
+				.animate({opacity:1}, 500);
+			},
+			function(){
+				$('.search')
+				.addClass('slideOutLeft')
+				.removeClass('slideInLeft')
+				.animate({opacity:0}, 300);
+			}
+		)
+
+		$('.search .close').click(function(){
+			$('.search')
+			.addClass('slideOutLeft')
+			.removeClass('slideInLeft')
+			.animate({opacity:0}, 300);
+		})
+				
+
+		// $('.greeting').click(function(){
+		// 	$('.homepage-motto')
+		// 		.removeClass('hide slideOutLeft')
+		// 		.addClass('slideInLeft animated')
+		// 		.css({opacity: 1}, 1200);
+		// 	$('.homepage-motto h2, .close')
+		// 		.delay(400).animate({opacity: 1});
+		// });
+
+		// $('.homepage-motto').click(function(){
+		// 	$(this)
+		// 		.removeClass('slideInLeft')
+		// 		.addClass('slideOutLeft')
+		// 		.delay(700).animate({opacity: 0}, 500);
+		// 		console.log( "mouse has left" );
+		// 	$('.homepage-motto h2, .close')
+		// 		.delay(50).animate({opacity: 0});
+		// });
+
+		//Old - uses toggleClick function
+
+		// $('.greeting').toggleClick( 
+		// function(){
+		// 	$('.homepage-motto')
+		// 		.removeClass('hide slideOutLeft')
+		// 		.addClass('slideInLeft animated')
+		// 		.css({opacity: 1}, 1200);
+		// 		console.log( "mouse has hovered" );
+		// 	$('.homepage-motto h2')
+		// 		.delay(400).animate({opacity: 1});
+				
+		// },
+		// function(){
+		// 	$('.homepage-motto')
+		// 		.removeClass('slideInLeft')
+		// 		.addClass('slideOutLeft')
+		// 		.delay(700).animate({opacity: 0}, 500);
+		// 		console.log( "mouse has left" );
+		// 	$('.homepage-motto h2')
+		// 		.delay(50).animate({opacity: 0});
+		// });
 
 		//Increment through each container and apply parrallax
 		//Doing this applies parallax individually to each instance of the "container" class
@@ -227,63 +243,95 @@ $(document).ready(function(){
 		greet_width();
 
 		$('.mobile-only').remove();
-	}
+	} //end if
 
 	else if (width < 480) {
 
-		$('.greeting').toggleClick( 
-		function(){
-			$(this)
-				.addClass('slideOutLeft animated');
+		$('.global-nav').removeClass('fixed');
 
-			$('.homepage-motto')
-				.removeClass('hide slideOutLeft')
-				.addClass('slideInLeft animated')
-				.css({opacity: 1}, 1200);
-				console.log( "mouse has hovered" );
-			$('.homepage-motto h2')
-				.delay(400).animate({opacity: 1});
-				
-		},
-		function(){
-			$('.homepage-motto')
+		$('.greeting').click(g_slide_sm);
+		$('.greeting').keypress(g_slide_sm);
+
+		// $('.greeting').click(function(){
+		// 	$(this)
+		// 		.addClass('slideOutLeft animated')
+		// 		//.delay(700).animate({opacity: 0}, 500);
+		// 	$('.homepage-motto')
+		// 		.removeClass('hide slideOutLeft')
+		// 		.addClass('slideInLeft animated')
+		// 		.css({opacity: 1}, 1200);
+		// 		//console.log( "mouse has hovered" );
+		// 	$('.homepage-motto h2')
+		// 		.delay(400).animate({opacity: 1});
+		// })
+
+		$('.homepage-motto').click(function(){
+			$(this)
 				.removeClass('slideInLeft')
 				.addClass('slideOutLeft')
-				.delay(700).animate({opacity: 0}, 500)
-				// .click(function(){
-				// 	$('.greeting')
-				// 	.removeClass('slideOutLeft')
-				// 	.addClass('slideinLeft')
-				// 	console.log('Motto Has been clicked')
-				// });
-				console.log( "mouse has left" );
+				//.delay(700)
+				//.animate({opacity: 0}, 500);
 			$('.homepage-motto h2')
-				.delay(50).animate({opacity: 0});
-		});
+				//.delay(400)
+				.animate({opacity: 0}, 500);
+			$('.greeting')
+				.removeClass('slideOutLeft')
+				.addClass('slideInLeft')
+				//.delay(700).animate({opacity: 1}, 500);
+		})
+		// $('.greeting').toggleClick( 
+		// function(){
+		// 	$(this)
+		// 		.addClass('slideOutLeft animated');
 
-		$('.homepage-motto').toggleClick(
-			function(){
-					$('.greeting')
-					.removeClass('slideOutLeft')
-					.addClass('slideinLeft')
-					console.log('Motto Has been clicked');
-					$(this)
-					.removeClass('slideInLeft')
-					.addClass('slideOutLeft')
-					//.delay(700).animate({opacity: 1}, 500);
-				},
-			function(){
-				$(this)
-					.removeClass('slideInLeft')
-					.addClass('slideOutLeft')
-					// .delay(700).animate({opacity: 1}, 500);
-				$('greeting')
-					.addClass('slideOutLeft')
-					.removeClass('slideInLeft');
-		});
+		// 	$('.homepage-motto')
+		// 		.removeClass('hide slideOutLeft')
+		// 		.addClass('slideInLeft animated')
+		// 		.css({opacity: 1}, 1200);
+		// 		console.log( "mouse has hovered" );
+		// 	$('.homepage-motto h2')
+		// 		.delay(400).animate({opacity: 1});
+				
+		// },
+		// function(){
+		// 	$('.homepage-motto')
+		// 		.removeClass('slideInLeft')
+		// 		.addClass('slideOutLeft')
+		// 		.delay(700).animate({opacity: 0}, 500)
+		// 		// .click(function(){
+		// 		// 	$('.greeting')
+		// 		// 	.removeClass('slideOutLeft')
+		// 		// 	.addClass('slideinLeft')
+		// 		// 	console.log('Motto Has been clicked')
+		// 		// });
+		// 		console.log( "mouse has left" );
+		// 	$('.homepage-motto h2')
+		// 		.delay(50).animate({opacity: 0});
+		// });
 
-		$('.global-nav').addClass('absolute_top');
-		$('.container').css({'backgroundAttachment' : "local"});
+		// $('.homepage-motto').toggleClick(
+		// 	function(){
+		// 			$('.greeting')
+		// 			.removeClass('slideOutLeft')
+		// 			.addClass('slideinLeft')
+		// 			console.log('Motto Has been clicked');
+		// 			$(this)
+		// 			.removeClass('slideInLeft')
+		// 			.addClass('slideOutLeft')
+		// 			//.delay(700).animate({opacity: 1}, 500);
+		// 		},
+		// 	function(){
+		// 		$(this)
+		// 			.removeClass('slideInLeft')
+		// 			.addClass('slideOutLeft')
+		// 			// .delay(700).animate({opacity: 1}, 500);
+		// 		$('greeting')
+		// 			.addClass('slideOutLeft')
+		// 			.removeClass('slideInLeft');
+		// });
+
+		// $('.global-nav').addClass('absolute_top');
+		 $('.container').css({'backgroundAttachment' : "local"});
 
 		$('#responsive-menu-button').sidr({
 		      name: 'sidr-main',
@@ -293,24 +341,11 @@ $(document).ready(function(){
 
 		 // $('#sidr-close').click(
 		 // 	function(){
-		 // 		$.sidr('close');
-		 // 	});
-
-		 
-
-		// $('.sidr-class-menu').prepend('<li id="sidr-close"><i class="fa fa-fw fa-close"></i></li>');
-
-		 
-
+		 // 		$
 
 		$('.desktop-only').remove();
 
-	}
-
-// }
-
-//  $(window).resize(_resize);
-//  _resize();
+	} //end else
 	
 	//Wrap all '.container's, '.global-nav's, and footer in div.row
 	$('.container, .global-nav, footer, .the-content').wrap('<div class="row" />');
@@ -326,39 +361,34 @@ $(document).ready(function(){
         return false;
     	});//end slide
 
+	//Animation for initial gallery tile load, ->
+	//Duplicated in loadProjects
+	//$('.project-tile').addClass('hide');
+	$('.project-tile').each(function(i, el){
+		window.setTimeout(function(){
+		$(el).removeClass('hide').addClass('fadeIn animated');
+		}, 200 * i);
+	});
 
-// var project = $('.project-tile');
-
-// $('.projects-nav ul li').click(function(){
-// 	var projectFilter = $(this).data('filter');
-// 	project.filter(function(){
-// 			if( $(this).hasClass(projectFilter)){
-// 				$(this).show(700);
-// 				//console.log($(this).data('cat'));
-// 			}
-// 			else{
-// 				$(this).hide(700);
-// 			}
-// 		})
-// });
-
-function loadProjects(projectType) {
+function loadProjects(projectType, query) { //*
  
       console.log(projectType);
+      console.log(query);  //*
       var is_loading = false;
        if (is_loading == false){
             is_loading = true;
  
-            $('#loader').show();
+            $('#loader, .loader-container').fadeIn(200);
 
             var data = {
                 action: 'get_projects',
-                projectType: projectType
+                projectType: projectType, //*
+                query: query //*
             };
             jQuery.post(ajaxurl, data, function(response) {
                 // now we have the response, so hide the loader
 
-                //console.log(response);
+                console.log(response);
                 
                //$('a#load-more-photos').show();
                 // append: add the new statments to the existing data
@@ -369,8 +399,15 @@ function loadProjects(projectType) {
                   //$container.waitForImages(function() {
                   //   $('#loader').hide();
                   // });                  
- 					$('#loader').hide(600);
- 					$('.project-tile').show(800);
+ 					$('#loader').fadeOut(1000);
+ 					$('.loader-container').fadeOut(300);
+ 					$('.project-tile').addClass('hide');
+ 					//Adds slideinLeft and animated classes to each project tile in order
+ 					$('.project-tile').each(function(i, el){
+ 						window.setTimeout(function(){
+ 						$(el).removeClass('hide').addClass('fadeIn animated');
+ 						}, 200 * i);
+ 					});
                   is_loading = false;
                 }
                 else{
@@ -381,27 +418,30 @@ function loadProjects(projectType) {
 
                 
             });
-            // die();
         }    
   }
 
 $('.projects-nav ul li').click(function(){
 	var projectType = $(this).attr('data-filter');
-	loadProjects(projectType);
-	$('.project-tile').remove();
+	loadProjects(projectType,'');
+	//Delete whatever is already in the project gallery
+	$('.project-tile').detach();
+	$('.search')
+		.removeClass('slideInLeft')
+		.addClass('slideOutLeft')
+		.animate({opacity:0}, 300);
 });
 
-
- // $('#sidr-close').click(
-		 // 	function(){
-		 // 		$.sidr('close');
-		 // 	});
-
-	// $(window).resize(function(){
-	// 	$('.container').css
-	// }
-
-//$('.global-nav').addClass('yes-this-is-working');
-
-
+$('.search_form form').submit(function(e){
+	e.preventDefault();
+	var $form = $(this);
+	var $input = $form.find('input[name="s"]');
+	var query = $input.val();
+	console.log(query);
+	loadProjects('',query);
+	$('.project-tile').detach();
+	$('.post.error').detach();
+	
 });
+
+});//end ready

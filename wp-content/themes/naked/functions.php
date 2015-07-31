@@ -48,6 +48,18 @@ remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
 remove_action( 'wp_head', 'wp_generator'); // remove WP version from header
 remove_action( 'wp_head','wp_shortlink_wp_head');
 
+// Register Navigation Menus
+function blog_menu() {
+
+  $locations = array(
+    'post_sidebar' => __( 'Menu for blog posts', 'text_domain' ),
+  );
+  register_nav_menus( $locations );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'blog_menu' );
 
 /**
  * Add custom taxonomies
@@ -108,6 +120,7 @@ return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
+//Add ajax functionality to pages, all not just in admin
 add_action('wp_head','pluginname_ajaxurl');
 function pluginname_ajaxurl() {
 ?>
@@ -117,28 +130,40 @@ var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 <?php
 }
 
-add_action('wp_ajax_get_projects', 'get_projects');
-add_action('wp_ajax_nopriv_get_projects', 'get_projects');
+add_action('wp_ajax_get_projects', 'get_projects');  
+add_action('wp_ajax_nopriv_get_projects', 'get_projects');  //_nopriv_ allows access for both signed in users, and not
 
 function get_projects(){
 
   $post_slug = $_POST['projectType'];
-
-
-  $args = array(
-  'post_type' => 'projects',
-  'tax_query' => array(
-    array(
-      'taxonomy' => 'project_type',
-      'field'    => 'slug',
-      'terms'    => $post_slug
-    ),
-  ),
-);
-
-
+  $query = $_POST['query']; //*
+  //$query = $_POST('query');
+ 
+ //Make the search exlusive to entries or clicking the filter
+ if ($post_slug != ''): //Using the filter
+      $args = array(
+      'post_type' => 'projects',
+      //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
+      'tax_query' => array(
+        array(
+          'taxonomy' => 'project_type',
+          'field'    => 'slug',
+          'terms'    => $post_slug
+          
+          ),
+        ),
+      );
+else:  //If the search is used
+      $args = array(
+      'post_type' => 'projects',
+      's' => $query
+      //
+          
+         // ),
+        //),
+      );
+endif;
         // the query
-      // echo '<div class="container '.$profile_class .'" id="project-gallery">';
       
         $the_query = new WP_Query( $args ); 
 
@@ -163,53 +188,49 @@ function get_projects(){
 
         //echo '<div class="container '.$profile_class .'" id="project-gallery">';
 
-         while ( $the_query->have_posts() ) : $the_query->the_post(); 
+         while ( $the_query->have_posts() ) : $the_query->the_post(); //We set up $the_query on line 144
         // If we have some posts to show, start a loop that will display each one the same way
         
         
 
          if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
 
-
-                 $image = get_field('project_gallery'); //The top level field
-                     $topImage = $image[0];
-                     $firstrowimagefield = $topImage['project_images']; //The subrow (project_images)
-                     $topImageURL = $firstrowimagefield['sizes']['square'];
-                     $permalink = get_permalink();
-                    $title = get_the_title();
-                
+               //Setup variables
+               $image = get_field('project_gallery'); //The top level field
+               $topImage = $image[0];
+               $firstrowimagefield = $topImage['project_images']; //The subrow (project_images)
+               $topImageURL = $firstrowimagefield['sizes']['square'];
+               $permalink = get_permalink();
+               $title = get_the_title();
               
           endif; 
 
-
           echo '<article class="post project-tile ' . $profile_class .'">
-            <div class="project-tile-overlay over_white">
-              <h1 class="title">
-                <a href="' . $permalink . '" title="' . $title .'">
-                  ' . $title . '
-                </a>
-              </h1>
-            </div>
-            <div class="project-tile-content">
-              <img src="' .$topImageURL . '" />
-            </div>
-            
-            
-          </article>';
+                <div class="project-tile-overlay over_white">
+                  <h1 class="title">
+                    <a href="' . $permalink . '" title="' . $title .'">
+                      ' . $title . '
+                    </a>
+                  </h1>
+                </div>
+                <div class="project-tile-content">
+                  <img src="' .$topImageURL . '" />
+                </div>
+                </article>';
 
          endwhile; 
-        
-
 
        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
         
-        echo '<article class="post error" style="background:cyan">
-          <h1 class="404">Nothing has been posted like that yet</h1>
-        </article>';
+        echo '<article class="post error">
+                <h1 class="404">
+                  Nothing has been posted like that yet
+                </h1>
+              </article>';
 
        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
 
-       die();
+       die();//if this isn't included, you will get funky characters at the end of your query results.
 
 }
 
@@ -238,8 +259,12 @@ function naked_scripts()  {
 	wp_enqueue_style( 'font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', NAKED_VERSION, true );	
 	wp_enqueue_style( 'animate', '//cdnjs.cloudflare.com/ajax/libs/animate.css/3.3.0/animate.min.css', NAKED_VERSION, true );	
 
+  wp_enqueue_style( 'avenir', '//fast.fonts.net/cssapi/8a47c8ec-ad52-403a-b207-fd4a74468402.css'); 
+
 	wp_enqueue_script( 'naked-fitvid', '//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js', array( 'jquery' ), NAKED_VERSION, true );		
 	wp_enqueue_script( 'easing', '//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js', array( 'jquery' ), NAKED_VERSION, true );
+
+  wp_enqueue_script( 'avenir', 'http://fast.fonts.net/jsapi/8a47c8ec-ad52-403a-b207-fd4a74468402.js' );
 
 	wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), NAKED_VERSION, true );
 

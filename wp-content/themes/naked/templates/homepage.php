@@ -38,12 +38,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<div class="container home" id="home" style="background-image:url('<?php echo $top_image['url']?>')">
 							<?php endif; ?>
 								<aside class="greeting over_white">
-									<h1><?php echo the_field('top_panel_greeting') ?><i class="fa fa-fw fa-long-arrow-right fa-small" style="font-size:smaller"></i></h1>
+									<h1><?php echo the_field('top_panel_greeting') ?><!-- <i class="fa fa-fw fa-long-arrow-right fa-small" style="font-size:smaller"></i> --></h1>
 								</aside>
-								<aside class="homepage-motto over_white">
+								<aside class="homepage-motto over_white hide">
 									<h2>
-									<?php echo the_field('top_panel_callout'); ?>
+									<?php echo the_field('top_panel_callout'); ?> 
 									</h2>
+									<!-- <div class="close"><i class="fa fa-fw fa-close"></i></div> -->
 								</aside>
 	
 								<div class="down-container">
@@ -77,11 +78,12 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 
 							<div class="container fh" id="panel_<?php echo $ctr ?>" style="background-image:url('<?php echo $imageURL ?>')">
-								<div class="callout">
+								
+							</div>
+							<div class="callout">
 									<h2><?php echo $callout; ?></h2>
 									<div class="callout-link"><a href="<?php echo $cta_link ?>"><?php echo $cta_text; ?></a></p></div>
 								</div>
-							</div>
 							
 							<?php $ctr++; endwhile; ?>
 
@@ -104,7 +106,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<?php
 								endif; 
 							?>
-								<div class="callout">
+								
+
+							</div>
+							<div class="callout final">
 									<h2><?php echo the_field('bottom_panel_title')?></h2>
 									<div class="center logos">
 										<ul>
@@ -128,8 +133,6 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 										</ul>
 									</div>
 								</div>
-
-							</div>
 							<!-- ================= -->
 							<?php the_content(); 
 							// This call the main content of the page, the stuff in the main text box while composing.

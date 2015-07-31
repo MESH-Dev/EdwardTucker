@@ -6,117 +6,68 @@
  */
 
 get_header(); // This fxn gets the header.php file and renders it ?>
+<div class="page-bg" style="background:url('http://localhost:8888/e-tucker/wp-content/themes/naked/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
 	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
-			<?php 
-				// the query
-
-				 $args = array(
-					'post_type' => 'projects',
-					'post_per_page' => -1,
-					'meta_key'     => 'featured',
-					'meta_value'     => '1',
-					);
-				$the_query = new WP_Query( $args ); 
-
-				$count = $the_query->found_posts;
-				$profile_class = "four-col";
-				//echo '<h1 style="background:red;">' .$count . '</h1>';
-
-				if ($count <= 4):
-					$profile_class = 'two-col';
-
-				elseif ($count < 9 && $count > 4):
-					$profile_class = 'three-col';
-
-				endif;
-				?>
-
-
-
-			<?php if ( $the_query->have_posts() ) : 
+		<div class="projects-nav gallery over_white">
+			<p>The news</p>
+			<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
+		</div>
+		<div id="content" role="main" class="span8 offset2 container over_white o_container blog" >
+			<h2 class="post-type"><?php the_category(); ?></h2>
+			<?php if ( have_posts() ) : 
 			// Do we have any posts in the databse that match our query?
 			// In the case of the home page, this will call for the most recent posts 
 			?>
-			<div class="container" id="project-gallery">
 
-				<div class="gallery-gateway">
-
-									<div class="over_white filter button">
-										<i class="fa fa-fw fa-arrow-left pull-left"></i>
-										<a href="#">Filter by industry</a>
-									</div>
-
-									<div class="over_white search-work button">
-										<i class="fa fa-fw fa-search pull-left"></i>
-										<a href="#">Search Work</a>
-									</div>
-
-				</div>
-
-				 <aside class="projects-nav over_white desktop-only" style="position:absolute; z-index:305;">
-							
-							<strong>Filter by Industry:</strong>
-							<ul>
-							 <?php
-						        $args = array(
-						          'orderby' => 'name',
-						          'order' => 'ASC'
-						        );
-						        $projectTypes = get_terms('project_type', $args);
-						        foreach($projectTypes as $projectType) {
-						          echo "<li data-filter='$projectType->slug'>$projectType->name</li>";
-						        }
-						        ?>
-						       <li>Search</li>
-							</ul>
-						</aside>
-					<div id="loader" style="display:none;">Loading...</div>
-			<!--<?php query_posts($query_string . '&posts_per_page=-1' );?>-->
-
-			
-
-				<?php while ( $the_query->have_posts() ) : $the_query->the_post(); 
+				<?php while ( have_posts() ) : the_post(); 
 				// If we have some posts to show, start a loop that will display each one the same way
 				?>
 
+					<article class="post">
+					
+						<h2 class="title">
+							<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
+								<?php get_post_type(); // Show the title of the posts as a link ?>
+							</a>
+						</h2>
 
-				<?php if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
-
-
-								 $image = get_field('project_gallery'); //The top level field
-						         $topImage = $image[0];
-						         $firstrowimagefield = $topImage['project_images']; //The subrow (project_images)
-						         $topImageURL = $firstrowimagefield['sizes']['square'];
-
-								
-								
-							
-					endif; ?>
-
-
-					<article class="post project-tile <?php echo $profile_class; ?>">
-						<div class="project-tile-overlay over_white">
-							<h1 class="title">
-								<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
-									<?php the_title(); // Show the title of the posts as a link ?>
-								</a>
-							</h1>
-						</div>
-						<div class="project-tile-content">
-							<img src="<?php echo $topImageURL; ?>" />
-						</div>
+						<div class="post-meta">
+							<?php the_time('m/d/Y'); // Display the time published ?> | 
+							<?php if( comments_open() ) : // If we have comments open on this post, display a link and count of them ?>
+								<span class="comments-link">
+									<?php comments_popup_link( __( 'Comment', 'break' ), __( '1 Comment', 'break' ), __( '% Comments', 'break' ) ); 
+									// Display the comment count with the applicable pluralization
+									?>
+								</span>
+							<?php endif; ?>
 						
-		
+						</div><!--/post-meta -->
+						
+						<div class="the-content">
+							<?php the_content( 'Continue...' ); 
+							// This call the main content of the post, the stuff in the main text box while composing.
+							// This will wrap everything in p tags and show a link as 'Continue...' where/if the
+							// author inserted a <!-- more --> link in the post body
+							?>
+							
+							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
+							<a href="<?php echo get_permalink(); ?>"> Read More...</a>
+						</div><!-- the-content -->
+						
 						<div class="meta clearfix">
-							<!-- <div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div> -->
+							<div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div>
 							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
 						</div><!-- Meta -->
 						
 					</article>
 
 				<?php endwhile; // OK, let's stop the posts loop once we've exhausted our query/number of posts ?>
-				</div>
+				
+				<!-- pagintation -->
+				<div id="pagination" class="clearfix">
+					<div class="past-page"><?php previous_posts_link( 'newer' ); // Display a link to  newer posts, if there are any, with the text 'newer' ?></div>
+					<div class="next-page"><?php next_posts_link( 'older' ); // Display a link to  older posts, if there are any, with the text 'older' ?></div>
+				</div><!-- pagination -->
 
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
