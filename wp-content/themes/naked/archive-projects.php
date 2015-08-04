@@ -54,7 +54,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 				</div>
 
-				 <aside class="projects-nav gallery over_white hide desktop-only">
+				 <aside class="projects-nav gallery over_white hide">
 							
 							<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<div class="title">Filter by Industry:</div>

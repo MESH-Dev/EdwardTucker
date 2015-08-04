@@ -58,10 +58,10 @@ $et_font:'Avenir W01';
 /*============================================*/
 input[type=text]{
   background: transparent;
-  border-bottom: 2px solid #2b2b2b;
+  border-bottom: 2px solid $main_text;
   border-radius: 0;
   line-height: 1.75;
-  margin-left: 10px;
+  margin-left: 1em;
 }
 
 /*Layout*/
@@ -139,6 +139,7 @@ h5{
 p{
   font-size:.9em;
   line-height:1.4;
+  letter-spacing:.015em;
 }
 
 .the-content{
@@ -159,6 +160,25 @@ p{
     line-height:1.4;
   }
 
+}
+
+.tags{
+  color:#5b5b5b;
+  font-weight:100;
+  letter-spacing:.04em;
+  font-size:.875em;
+  font-size:12px;
+  text-transform:uppercase;
+  line-height: 1.4;
+  margin-bottom:.5em;
+
+  a{
+    color:#5b5b5b !important;
+    &:hover{
+      color:#292929 !important;
+      text-decoration:underline;
+    }
+  }
 }
 
 h1.title{
@@ -191,16 +211,20 @@ h1.title{
 
 }
 
-.container.default, .container.blog{
+.container.default, .container.blog,{
   height:auto;
   margin-bottom:130px;
   margin-top:1em;
 }
 
+.archive #content{
+  margin-bottom:100px;
+}
+
 .container.default{
   .the-content{
     width:60%;
-    margin:0 30% 0;
+    margin:0 15em 0;
     //margin-top:1em; 
     padding:1.5em;
   }
@@ -250,6 +274,7 @@ nav.global-nav{
       text-transform:uppercase; 
       font-weight:500;
       font-size:.9em;
+      letter-spacing:.04em;
 
       &:hover, &:active, &:focus{
         color:white;
@@ -270,24 +295,22 @@ nav.global-nav{
 
 
 .blog .post{
-  h2, h3, h4{
-    margin-bottom:1em;
-  }
-  &:after{
-    display:block;
-    content:" ";
-    width:90%;
-    margin:0 auto;
-    border-bottom:3px solid #a2a2a2;
-    margin:1em auto;
-  }
+  border-bottom:3px solid #a2a2a2;
+  margin-bottom:1em;
+  padding-bottom:2.5em;
 
-  &:last-child{
-    &:after{
-      content:"";
-      border-bottom:transparent !important;
-    }
+  h2, h3, h4{
+    margin-bottom:.75em;
   }
+}
+
+article.post:last-of-type{
+      border-bottom:0px solid white;
+}
+
+.blog h2{
+  text-transform:uppercase;
+  padding-bottom:.75em;
 }
 
 .homepage-motto{
@@ -354,7 +377,7 @@ nav.global-nav{
 }
 
 .over_white{
-  background:rgba(255,255,255, .8);
+  background:rgba(255,255,255, .9);
 }
 
 .greeting{
@@ -383,7 +406,7 @@ nav.global-nav{
 
 .o_container{
   width:60%;
-  margin-left:30%;
+  margin-left:15em;
   margin-top:1em;
   padding:1.5em;
 
@@ -595,7 +618,7 @@ nav.global-nav{
   //top:0;
 }
 
-.search{
+.search_form, .news_search_form{
   width:50%; 
   height:400px;
   margin-top:5em;
@@ -607,6 +630,12 @@ nav.global-nav{
   transition:all .2s ease-in-out;
   position:absolute;
   z-index:305;
+
+  form{
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 2em;
+  }
 }
 
 .project-overview, .projects-nav{
@@ -734,6 +763,18 @@ nav.global-nav{
   margin-bottom:1em; 
 }
 
+.search-news-container{
+  margin-top:3em;
+}
+
+a.search-news.button{
+  text-decoration:underline;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-left:.5em;
+  font-style:normal !important;
+}
+
 .page-portfolio-of-work .the-content{
   margin-bottom:2em;
 }
@@ -753,12 +794,22 @@ footer {
 
   ul li{
     display:inline-block; 
-    margin-right:1em;
+    margin-right:.25em;
+    vertical-align:top;
   }
 
   p{
     margin:0;
     padding:0;
+  }
+
+  a{
+    color:white;
+
+    &:hover{
+      text-decoration:underline;
+      color:white;
+    }
   }
 
   .contact-info{
@@ -847,15 +898,15 @@ header .sidr-close{
 /*Custom animations*/
 
 .animate-loader{
-  animation: animateLoad ease-in-out 2s;
+  animation: animateLoad ease-in-out 1.5s;
   animation-iteration-count: infinite;
-  -webkit-animation: animateLoad ease-in-out 2s;
+  -webkit-animation: animateLoad ease-in-out 1.5s;
   -webkit-animation-iteration-count: infinite;
-  -moz-animation: animateLoad ease-in-out 2s;
+  -moz-animation: animateLoad ease-in-out 1.5s;
   -moz-animation-iteration-count: infinite;
-  -o-animation: animateLoad ease-in-out 2s;
+  -o-animation: animateLoad ease-in-out 1.5s;
   -o-animation-iteration-count: infinite;
-  -ms-animation: animateLoad ease-in-out 2s;
+  -ms-animation: animateLoad ease-in-out 1.5s;
   -ms-animation-iteration-count: infinite;
 }
 
@@ -1007,9 +1058,18 @@ div[id*="panel"]{
 
   }
 
-  .gallery-gateway{
+  .gallery-gateway, {
     position:fixed;
     top:10em;
+  }
+
+  .projects-nav.gallery, .search_form{
+    position:fixed;
+  }
+
+  .search_form{
+    width:80%;
+    margin-left:0;
   }
 
   .container.default{

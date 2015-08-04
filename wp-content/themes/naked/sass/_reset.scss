@@ -355,15 +355,16 @@ h1{line-height:1;}
 // /* Links */
 a {
   color: #292929;
-  -webkit-transition: color 0.25s ease-in-out;
-  -moz-transition: color 0.25s ease-in-out;
-  -o-transition: color 0.25s ease-in-out;
-  -ms-transition: color 0.25s ease-in-out;
-  transition: color 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   text-decoration: none;
 
   &:hover{
-    color:#a8a8a8;
+    color:#5b5b5b;
+    //font-weight:bold;
   }
 
 }

@@ -12,13 +12,15 @@
 		
 		<div class="contact-info">
 		<ul>
-			<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/social_mockup.png"></li>
+			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-twitter.png"></a></li>
+			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-fb.png"></a></li>
+			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-instagram.png"></a></li>
 			<li><p>222 Street Name. Huntington, West Virginia 22222  (347) - 446 - 8254</p>
 		</ul>
 		</div>
 
 		<div class="copyright">
-			<p>Copyright 2015, All Rights Reserved. Site by MESH. </p>
+			<p>Copyright 2015, All Rights Reserved. Site by <a href="http://meshfresh.com" target="_blank">MESH</a>. </p>
 		</div>
 
 		<!-- <p>Birthed <a href="http://bckmn.com/naked-wordpress" rel="theme">Naked</a> 

@@ -11,7 +11,18 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 		<div class="projects-nav gallery over_white">
 			<p>The news</p>
 			<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
+			<div class="search-news-container">
+				<a href="#" class="search-news button">Search News ></a>
+			</div>
 		</div>
+		<aside class="search news_search_form hide over_white">
+					<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
+					<!-- <form name="search" style="display:table-cell; vertical-align:middle;">
+						<label for="s"><h2 style="float:left; display:block;">Search</h2></label>
+						<input type="text" value="" name="s"  placeholder="Type to search"> -->
+						<?php get_search_form(); ?>
+					<!-- </form> -->
+		</aside>
 		<div id="content" role="main" class="span8 offset2 container over_white o_container blog" >
 			<h2 class="post-type"><?php the_category(); ?></h2>
 			<?php if ( have_posts() ) : 
@@ -25,14 +36,14 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 					<article class="post">
 					
-						<h2 class="title">
+						<h3 class="title">
 							<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
-								<?php get_post_type(); // Show the title of the posts as a link ?>
+								<?php the_title(); // Show the title of the posts as a link ?>
 							</a>
-						</h2>
-
+						</h3>
+						<div class="tags"><?php echo get_the_tag_list(); // Display the tags this post has, as links separated by spaces and pipes ?></div>
 						<div class="post-meta">
-							<?php the_time('m/d/Y'); // Display the time published ?> | 
+							<!--<?php the_time('m/d/Y'); // Display the time published ?> | -->
 							<?php if( comments_open() ) : // If we have comments open on this post, display a link and count of them ?>
 								<span class="comments-link">
 									<?php comments_popup_link( __( 'Comment', 'break' ), __( '1 Comment', 'break' ), __( '% Comments', 'break' ) ); 
@@ -51,12 +62,12 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
-							<a href="<?php echo get_permalink(); ?>"> Read More...</a>
+							<!-- <a href="<?php echo get_permalink(); ?>"> Read More...</a> -->
 						</div><!-- the-content -->
 						
 						<div class="meta clearfix">
-							<div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div>
-							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
+							<!-- <div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div> -->
+							<!-- <div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div> -->
 						</div><!-- Meta -->
 						
 					</article>

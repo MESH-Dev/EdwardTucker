@@ -16,15 +16,19 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				<?php while ( have_posts() ) : the_post(); 
 				// If we have a post to show, start a loop that will display it
 				?>
+					<div class="blog-nav over_white">
+						<div class="title">The news</div>
+						<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
+					</div>
 
 					<article class="post over_white o_container">
 					
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
-						<div class="post-meta">
-							<?php the_time('m.d.Y'); // Display the time it was published ?>
+						<!--<div class="post-meta">
+							<?php //the_time('m.d.Y'); // Display the time it was published ?>
 							<?php // the author(); Uncomment this and it will display the post author ?>
 						
-						</div><!--/post-meta -->
+						</div>--><!--/post-meta -->
 						
 						<div class="the-content">
 							<?php the_content(); 
