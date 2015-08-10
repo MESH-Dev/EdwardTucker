@@ -1,8 +1,8 @@
 <?php
 /**
- * The template for displaying the projects page.
- *  
- * 
+ * The template for displaying the home/index page.
+ * This template will also be called in any case where the Wordpress engine 
+ * doesn't know which template to use (e.g. 404 error)
  */
 
 get_header(); // This fxn gets the header.php file and renders it ?>
@@ -12,10 +12,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				// the query
 
 				 $args = array(
-					'post_type' => 'projects',
+					'post_type' => 'news',
 					'post_per_page' => -1,
-					'meta_key'     => 'featured',
-					'meta_value'     => '1',  //This refers to the checkbox 1=true, 0=false
+					//'meta_key'     => 'featured',
+					//'meta_value'     => '1',
 					);
 				$the_query = new WP_Query( $args ); 
 
@@ -43,21 +43,20 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				<div class="gallery-gateway">
 
 									<div class="over_white filter button">
-										<div class="sprite r_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
+										<i class="fa fa-fw fa-arrow-left pull-left"></i>
 										<a href="#">Filter by industry</a>
 									</div>
 
 									<div class="over_white search-work button">
-										<div class="sprite search_i" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
+										<i class="fa fa-fw fa-search pull-left"></i>
 										<a href="#">Search Work</a>
 									</div>
 
 				</div>
 
-				 <aside class="projects-nav gallery over_white hide">
+				 <aside class="projects-nav over_white desktop-only" style="position:absolute; z-index:305;">
 							
-							<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
-							<div class="title">Filter by Industry:</div>
+							<strong>Filter by Industry:</strong>
 							<ul>
 							 <?php
 						        $args = array(
@@ -69,19 +68,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						          echo "<li data-filter='$projectType->slug'>$projectType->name</li>";
 						        }
 						        ?>
-						        <li data-filter=''>All Work</li>
-						       <div class="search-text-link">Search Work <div class="sprite l_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div></div>
+						       <li>Search</li>
 							</ul>
 						</aside>
-
-				<aside class="search search_form hide over_white">
-					<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
-					<form name="search" style="display:table-cell; vertical-align:middle;">
-						<label for="s"><h2 style="float:left; display:block;">Search Work</h2></label>
-						<input type="text" value="" name="s"  placeholder="Type to search">
-					</form>
-				</aside>
-					<div id="loader" style="display:none;"><div class="loader-container animate-loader"><!-- <i class="fa fa-spin fa-spinner"></i> --><img src="http://localhost:8888/e-tucker/wp-content/themes/naked/img/eta-loader-white.png"></div></div>
+					<div id="loader" style="display:none;">Loading...</div>
 			<!--<?php query_posts($query_string . '&posts_per_page=-1' );?>-->
 
 			
@@ -105,14 +95,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 					endif; ?>
 
 
-					<article class="post project-tile hide <?php echo $profile_class; ?>">
+					<article class="post project-tile <?php echo $profile_class; ?>">
 						<div class="project-tile-overlay over_white">
 							<h1 class="title">
 								<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
 									<?php the_title(); // Show the title of the posts as a link ?>
 								</a>
 							</h1>
-						
 						</div>
 						<div class="project-tile-content">
 							<img src="<?php echo $topImageURL; ?>" />

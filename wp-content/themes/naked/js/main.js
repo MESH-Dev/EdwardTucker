@@ -126,7 +126,7 @@ $(document).ready(function(){
 		 //$('.projects-nav.gallery').addClass('hide');
 
 		
-		$('.search-work.button').toggleClick(
+		$('.search-work.button, .search-text-link').toggleClick(
 			function(e){
 			e.preventDefault();
 			$('.search_form')
@@ -457,6 +457,7 @@ function loadProjects(projectType, query) { //*
  					$('#loader').fadeOut(1000);
  					$('.loader-container').fadeOut(300);
  					$('.project-tile').addClass('hide');
+ 					//$('.projects-nav ul > li').removeClass('selected');
  					//Adds slideinLeft and animated classes to each project tile in order
  					$('.project-tile').each(function(i, el){
  						window.setTimeout(function(){
@@ -466,9 +467,9 @@ function loadProjects(projectType, query) { //*
  					$('.search_form')
  						.removeClass('slideInLeft')
  						.addClass('slideOutLeft');
- 					$('.projects-nav.gallery')
- 						.removeClass('slideInLeft')
- 						.addClass('slideOutLeft');
+ 					// $('.projects-nav.gallery')
+ 					// 	.removeClass('slideInLeft')
+ 					// 	.addClass('slideOutLeft');
                   is_loading = false;
                 }
                 else{
@@ -485,6 +486,8 @@ function loadProjects(projectType, query) { //*
 $('.projects-nav ul li').click(function(){
 	var projectType = $(this).attr('data-filter');
 	loadProjects(projectType,'');
+	$(this).addClass('selected');
+	$('.projects-nav ul li.selected').not($(this)).removeClass('selected');
 	//Delete whatever is already in the project gallery
 	$('.project-tile').detach();
 	$('.search_form')

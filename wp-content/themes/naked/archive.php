@@ -8,8 +8,8 @@
 get_header(); // This fxn gets the header.php file and renders it ?>
 <div class="page-bg" style="background:url('<?php echo get_template_directory_uri("/"); ?>/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
 	<div id="primary" class="row-fluid">
-		<div class="projects-nav gallery over_white">
-			<p>The news</p>
+		<div class="blog-nav over_white">
+			<div class="title">The news</div>
 			<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
 			<div class="search-news-container">
 				<a href="#" class="search-news button">Search News ></a>

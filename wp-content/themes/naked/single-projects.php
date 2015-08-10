@@ -67,9 +67,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
 						</div><!-- Meta -->
 						
-						<div class="acheivement">
+						<!--Hide until we know exactly how this is going to work-->
+						<!-- <div class="acheivement">
 							<p>Award Winning</p>
-						</div>
+						</div> -->
 						</aside>
 
 					</article>
