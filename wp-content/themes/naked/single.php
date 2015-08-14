@@ -22,8 +22,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 					</div>
 
 					<article class="post over_white o_container">
+						<div class="o_container_inner">
 					
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
+						<div class="tags"><?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
 						<!--<div class="post-meta">
 							<?php //the_time('m.d.Y'); // Display the time it was published ?>
 							<?php // the author(); Uncomment this and it will display the post author ?>
@@ -31,6 +33,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div>--><!--/post-meta -->
 						
 						<div class="the-content">
+								
+						<?php if(get_field('post_lead')): ?>
+
+							<h4 class="lead"><?php echo the_field('post_lead'); ?></h4>
+
+						<? endif; ?>
+								
 							<?php the_content(); 
 							// This call the main content of the post, the stuff in the main text box while composing.
 							// This will wrap everything in p tags
@@ -40,10 +49,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div><!-- the-content -->
 						
 						<div class="meta clearfix">
-							<div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div>
-							<div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
+							<!-- <div class="category"><?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?></div> -->
+							<!-- <div class="tags"><?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div> -->
 						</div><!-- Meta -->
-						
+						</div>
 					</article>
 
 				<?php endwhile; // OK, let's stop the post loop once we've displayed it ?>

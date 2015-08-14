@@ -25,6 +25,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 		</div>
 		<div id="content" role="main" class="span8 offset2 container over_white o_container blog" >
 			<h2>News</h2>
+			<div class="o_container_inner">
 			<!--<?php get_search_form(); ?>-->
 			<?php if ( have_posts() ) : 
 			// Do we have any posts in the databse that match our query?
@@ -43,6 +44,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							</a>
 						</h3>
 						<div class="tags"><?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
+					
+					<?php if(get_field('post_lead')): ?>
+
+						<h4 class="lead"><?php echo the_field('post_lead'); ?></h4>
+
+					<? endif; ?>
+
 						<div class="post-meta">
 							<?php //the_time('m/d/Y'); // Display the time published ?> 
 							<?php if( comments_open() ) : // If we have comments open on this post, display a link and count of them ?>
@@ -57,7 +65,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						
 						<div class="the-content">
 
-							<?php the_content( 'Continue...' ); 
+							<?php the_excerpt( 'Continue...' ); 
 							// This call the main content of the post, the stuff in the main text box while composing.
 							// This will wrap everything in p tags and show a link as 'Continue...' where/if the
 							// author inserted a <!-- more --> link in the post body
@@ -73,6 +81,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div><!-- Meta -->
 						
 					</article>
+
 
 				<?php endwhile; // OK, let's stop the posts loop once we've exhausted our query/number of posts ?>
 				
@@ -90,6 +99,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) ?>
+			</div><!-- o_container_inner -->
 		</div><!-- #content .site-content -->
 	</div><!-- #primary .content-area -->
 <?php get_footer(); // This fxn gets the footer.php file and renders it ?>

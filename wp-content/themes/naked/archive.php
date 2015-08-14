@@ -55,7 +55,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div><!--/post-meta -->
 						
 						<div class="the-content">
-							<?php the_content( 'Continue...' ); 
+							<?php the_excerpt( 'Continue...' ); 
 							// This call the main content of the post, the stuff in the main text box while composing.
 							// This will wrap everything in p tags and show a link as 'Continue...' where/if the
 							// author inserted a <!-- more --> link in the post body

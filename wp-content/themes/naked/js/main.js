@@ -427,8 +427,8 @@ $(document).ready(function(){
 
 function loadProjects(projectType, query) { //*
  
-      console.log(projectType);
-      console.log(query);  //*
+      //console.log(projectType);
+      //console.log(query);  //*
       var is_loading = false;
        if (is_loading == false){
             is_loading = true;

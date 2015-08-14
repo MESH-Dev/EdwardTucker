@@ -140,9 +140,16 @@ function get_projects(){
   //$query = $_POST('query');
  
  //Make the search exlusive to entries or clicking the filter
- if ($post_slug != ''): //Using the filter
+ if ($post_slug == '*'): //All posts?
       $args = array(
       'post_type' => 'projects',
+      'posts_per_page' => -1
+      
+      );
+ elseif ($post_slug != ''): //Using the filter
+      $args = array(
+      'post_type' => 'projects',
+      'posts_per_page' => -1,
       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
       'tax_query' => array(
         array(
@@ -156,6 +163,7 @@ function get_projects(){
 else:  //If the search is used
       $args = array(
       'post_type' => 'projects',
+      'posts_per_page' => -1,
       's' => $query
       //
           

@@ -69,7 +69,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						          echo "<li data-filter='$projectType->slug'>$projectType->name</li>";
 						        }
 						        ?>
-						        <li data-filter=''>All Work</li>
+						        <li data-filter='*'>All Work</li>
 						       <div class="search-text-link">Search Work <div class="sprite l_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div></div>
 							</ul>
 						</aside>
