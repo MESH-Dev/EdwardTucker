@@ -23,13 +23,14 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						<div class="the-content over_white">
 
 							<h2 class="title"><?php the_title(); // Display the title of the page ?></h2>
-
-							<?php the_content(); 
-							// This call the main content of the page, the stuff in the main text box while composing.
-							// This will wrap everything in p tags
-							?>
-							
-							<?php wp_link_pages(); // This will display pagination links, if applicable to the page ?>
+							<div class="o_container_inner">
+								<?php the_content(); 
+								// This call the main content of the page, the stuff in the main text box while composing.
+								// This will wrap everything in p tags
+								?>
+								
+								<?php wp_link_pages(); // This will display pagination links, if applicable to the page ?>
+							</div>
 						</div><!-- the-content -->
 						
 					</article>

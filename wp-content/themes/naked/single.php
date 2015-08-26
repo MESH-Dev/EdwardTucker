@@ -36,7 +36,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 								
 						<?php if(get_field('post_lead')): ?>
 
-							<h4 class="lead"><?php echo the_field('post_lead'); ?></h4>
+							<h2 class="lead"><?php echo the_field('post_lead'); ?></h2>
 
 						<? endif; ?>
 								
