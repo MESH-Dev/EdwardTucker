@@ -1,6 +1,6 @@
 <?php 
 /**
- * 	Template Name: People page - Individual
+ * 	Template Name: Studio page - Individual
  *
  *	This page template has a sidebar built into it, 
  * 	and can be used as a home page, in which case the title will not show up.
@@ -52,13 +52,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<div class="sprite r_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<!-- <i class="fa fa-fw fa-arrow-left pull-right" style="padding-left:.5em;"></i> -->
 						
-							<a href="<?php echo site_url(); ?>/people"> Back To Our Team</a>
+							<a href="<?php echo site_url(); ?>/studio"> Back To Our Studio</a>
 						</aside>
 						
 						<aside class="project-overview over_white hide">
 						<div class="back mobile-only">
 							<div class="sprite r_arrow alignLeft" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
-							<a href="<?php echo site_url(); ?>/people">Back To Our Team</a> <!--<?php wp_get_referer(); ?>-->
+							<a href="<?php echo site_url(); ?>/studio">Back To Our Studio</a> <!--<?php wp_get_referer(); ?>-->
 							
 						</div>
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
@@ -68,32 +68,6 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							// This will wrap everything in p tags
 							?>
 							
-							<ul class="individual-social">
-								<?php if (have_rows('social_media_links')) : 
-									while (have_rows('social_media_links')) : the_row();
-
-									$type = get_sub_field('type');	
-									$link = get_sub_field('link');
-									$fb = 'facebook';
-									$ig = 'instagram';
-									$tw = 'twitter';
-									//print_r($type);
-								?>
-								<li>
-									<a href="<?php echo $link; ?>">
-										
-										<span class="fa-stack fa-small">
-											<i class="fa fa-square-o fa-stack-2x"></i>
-											<i class="fa fa-<?php echo $type; ?> fa-stack-1x"></i>
-										</span>
-
-										
-									</a>
-
-								</li>
-
-								<?php  endwhile; endif; ?>
-							</ul>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
 						</div><!-- the-content -->

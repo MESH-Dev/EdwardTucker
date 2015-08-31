@@ -186,6 +186,7 @@ h1.title{
   // font-size:2.25em;
   font-weight:300;
   text-transform:uppercase;
+  margin-bottom:25px;
   //margin:.5em 0;
 }
 
@@ -244,14 +245,19 @@ div[id*="panel"]{
   //margin-bottom:10px;
 }
 
+.individual-social{
+  font-size:.875em;
+  text-align:right;
+}
 .single-projects div[id*="panel"]{
   height:200%;
   min-height:200%;
 }
 
-.single-projects .container{
+.single-projects .container, .single-panel .container{
   margin-bottom:15px;
 }
+
 nav.global-nav{
   background:$footer_bg; 
   width:100%; 
@@ -459,7 +465,7 @@ article.post:last-of-type{
 .project-intro{
   position:absolute; 
   top:7em;
-  height:400px;
+  min-height:400px;
 }
 .projects-nav.gallery{
   width:auto; 
@@ -511,7 +517,7 @@ article.post:last-of-type{
 .projects-nav.single{
   width:80px; 
   height:100%;
-  min-height:100%;
+  min-height:400px;
   padding:1em; 
   float:left;
   text-transform:uppercase;
