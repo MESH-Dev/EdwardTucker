@@ -25,15 +25,17 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						         $topImage = $image[0];
 						         $firstrowimagefield = $topImage['project_images'];
 						         $topImageURL = $firstrowimagefield['sizes']['panel-fullwidth'];
-
-								
+						         $award = get_field('award_winning');
+						         $award_link = get_field('award_link');
+								 
+								 $award_display = 'none';
 								
 							?>
 					<?php endif; ?>
 					<div class="container home" id="home" style="background-image:url('<?php echo $topImageURL ?>')">
 
 						<article class="post project-intro my-page">
-						<aside class="projects-nav single over_white desktop-only">
+						<aside class="projects-nav single over_white">
 							<div class="sprite r_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<!-- <i class="fa fa-fw fa-arrow-left pull-right" style="padding-left:.5em;"></i> -->
 						
@@ -41,17 +43,15 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</aside>
 						
 						<aside class="project-overview over_white hide">
-						<div class="back mobile-only">
+						<div class="back">
 							<div class="sprite r_arrow alignLeft" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<a href="<?php echo site_url(); ?>/projects">Back To All Work</a> <!--<?php wp_get_referer(); ?>-->
 							
 						</div>
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
-						<!--<div class="post-meta">
-							<?php the_time('m.d.Y'); // Display the time it was published ?>
-							<?php // the author(); Uncomment this and it will display the post author ?>
-						
-						</div>--><!--/post-meta -->
+						<?php $project_subtitle = get_field('project_subtitle')?>
+						<h2 class="subtitle"><?php echo $project_subtitle ?></h2>
+						<div class="tags"><?php echo get_field('supp_info'); ?></div>
 						
 						<div class="the-content">
 							<?php the_content(); 
@@ -60,6 +60,22 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
+								<?php if (!empty ($award_link)):?>
+								<a href="<?php echo $award_link ?>" target="_blank" > 
+
+								<?php else: endif; ?>
+
+								<?php if ($award == 'true'): 
+								$award_display = 'block'; 
+								endif;?>
+							<!-- <a href="<?php //echo $award_link ?>" target="_blank" style="display:<?php //echo $award_display ?>"> -->
+								<div class="acheivement" style="display:<?php echo $award_display ?>">
+										<img src="<?php echo get_template_directory_uri("/"); ?>/img/award-winning.png">
+											<!-- <p>Award Winning</p> -->
+								</div>
+							<?php if (!empty ($award_link)): ?> 
+								</a> <?php endif; ?>
+
 						</div><!-- the-content -->
 						
 						<div class="meta clearfix">

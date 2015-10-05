@@ -48,7 +48,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<!-- Mockup containers -->
 							<div class="container home" style="background-image:url('<?php echo $topImageURL; ?>')">
 								<div class="project-intro"><h1><?php $topImageURL; ?></h1>
-								<aside class="projects-nav single over_white desktop-only">
+								<aside class="projects-nav single over_white">
 							<div class="sprite r_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<!-- <i class="fa fa-fw fa-arrow-left pull-right" style="padding-left:.5em;"></i> -->
 						
@@ -56,7 +56,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</aside>
 						
 						<aside class="project-overview over_white hide">
-						<div class="back mobile-only">
+						<div class="back">
 							<div class="sprite r_arrow alignLeft" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<a href="<?php echo site_url(); ?>/people">Back To Our Team</a> <!--<?php wp_get_referer(); ?>-->
 							

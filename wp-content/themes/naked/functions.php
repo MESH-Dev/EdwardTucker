@@ -120,6 +120,31 @@ return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
+//Add class of current-page-ancestor to Custom Post Types
+function remove_parent($var)
+{
+if ($var == 'current_page_parent' || $var == 'current-menu-item' || $var == 'current-page-ancestor') { return false; }
+return true;
+}
+
+function tg_add_class_to_menu($classes){
+  // Add custom post type name
+  if (is_singular('post') || is_category('')){
+    
+    $classes = array_filter($classes, "remove_parent");
+
+  // Need to add menu item number
+  if (in_array('menu-item-340', $classes)) $classes[] = 'current-page-ancestor';
+  }
+
+return $classes;
+}
+
+if (!is_admin()) { add_filter('nav_menu_css_class', 'tg_add_class_to_menu'); }
+
+
+
+
 //Add ajax functionality to pages, all not just in admin
 add_action('wp_head','pluginname_ajaxurl');
 function pluginname_ajaxurl() {
@@ -210,21 +235,26 @@ endif;
                $topImageURL = $firstrowimagefield['sizes']['square'];
                $permalink = get_permalink();
                $title = get_the_title();
+               $project_subtitle = get_field('project_subtitle');
               
           endif; 
 
-          echo '<article class="post project-tile ' . $profile_class .'">
+          echo '<a href="' . $permalink . '" title="' . $title .'">
+                <article class="post project-tile ' . $profile_class .'">
                 <div class="project-tile-overlay over_white">
                   <h1 class="title">
-                    <a href="' . $permalink . '" title="' . $title .'">
+                    
                       ' . $title . '
-                    </a>
+                    
                   </h1>
+                  <h2 class="subtitle">' . $project_subtitle . '</h2>
+
                 </div>
                 <div class="project-tile-content">
                   <img src="' .$topImageURL . '" />
                 </div>
-                </article>';
+                </article>
+                </a>';
 
          endwhile; 
 
@@ -280,6 +310,7 @@ function naked_scripts()  {
 	wp_enqueue_script( 'ST', get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js', array( 'jquery' ), NAKED_VERSION, true );
 	wp_enqueue_script( 'localS', get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js', array( 'jquery' ), NAKED_VERSION, true );
 	wp_enqueue_script( 'sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'jquery' ), NAKED_VERSION, true );
+
 
 	// add fitvid
 	//wp_enqueue_script( 'naked-fitvid', get_template_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), NAKED_VERSION, true );

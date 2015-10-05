@@ -11,7 +11,6 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 	<div id="primary" class="row-fluid">
 		<div id="content" role="main" class="span8">
 			
-
 			<?php if ( have_posts() ) : 
 			// Do we have any posts/pages in the databse that match our query?
 			?>
@@ -47,6 +46,8 @@ get_header(); // This fxn gets the header.php file and renders it ?>
         						$link = get_sub_field('link');
         						$label = get_sub_field('label');
         						$rows = get_field('image');
+        						$external_link = get_sub_field('external_link');
+        						$target = '_self';
         						
         						$profile_class = "four-col";
         						
@@ -64,7 +65,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 									<article class="post project-tile <?php echo $profile_class ?> ">
 										<div class="project-tile-overlay over_white">
 											<h1 class="title">
-												<a href="<?php echo $link ?>" target="_self" alt"Picture of <?php echo $label; ?>" title="Read more about <?php echo $label; ?>">
+												<?php if ($external_link == 'true'):
+													$target = '_blank'; 
+													endif;
+													?>
+
+												<a href="<?php echo $link ?>" target="<?php echo $target ?>" alt="Picture of <?php echo $label; ?>" title="Read more about <?php echo $label; ?>">
+												
 													<?php echo $label ?>
 												</a>
 											</h1>

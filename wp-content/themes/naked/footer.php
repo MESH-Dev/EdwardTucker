@@ -12,10 +12,10 @@
 		
 		<div class="contact-info">
 		<ul>
-			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-twitter.png"></a></li>
-			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-fb.png"></a></li>
-			<li><a href="#"><img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-instagram.png"></a></li>
-			<li><p>222 Street Name. Huntington, West Virginia 22222  (347) - 446 - 8254</p>
+			<li><a href="#"><i class="fa fa-fw fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-fw fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-fw fa-instagram"></i></a></li>
+			<li><p>1401 Sixth Avenue, Huntington, West Virginia 25701  <span class="contact-number">(347) - 697 - 4990</span></p>
 		</ul>
 		</div>
 

@@ -6,7 +6,18 @@
  */
 
 get_header(); // This fxn gets the header.php file and renders it ?>
-<div class="page-bg" style="background:url('<?php echo get_template_directory_uri("/"); ?>/img/e_tucker_background_1.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; background-attachment:fixed;width: 100%;height: 100%;position: fixed;"></div>
+
+
+						<?php 
+
+							//[get_option('page_for_posts')] -- this is needed since we are using a "static"
+							//page for news posts.
+							$page_background = get_field('page_background', get_option('page_for_posts'));
+							$pg_bg_url=$page_background['sizes']['panel-fullwidth'];
+							//var_dump($pg_bg_url);
+						?>
+
+<div class="page-bg" style="background-image:url('<?php echo $pg_bg_url; ?>');"></div>
 	<div id="primary" class="row-fluid">
 		<aside class="search news_search_form hide over_white">
 					<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
@@ -35,6 +46,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				<?php while ( have_posts() ) : the_post(); 
 				// If we have some posts to show, start a loop that will display each one the same way
 				?>
+					
 
 					<article class="post">
 					

@@ -13,7 +13,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 				 $args = array(
 					'post_type' => 'projects',
-					'post_per_page' => -1,
+					'posts_per_page' => -1,
 					'meta_key'     => 'featured',
 					'meta_value'     => '1',  //This refers to the checkbox 1=true, 0=false
 					);
@@ -98,20 +98,26 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						         $topImage = $image[0];
 						         $firstrowimagefield = $topImage['project_images']; //The subrow (project_images)
 						         $topImageURL = $firstrowimagefield['sizes']['square'];
+						         $project_subtitle = get_field('project_subtitle');
 
 								
 								
 							
 					endif; ?>
 
-
+					<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
 					<article class="post project-tile hide <?php echo $profile_class; ?>">
 						<div class="project-tile-overlay over_white">
 							<h1 class="title">
-								<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
+								<!-- <a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>"> -->
 									<?php the_title(); // Show the title of the posts as a link ?>
-								</a>
+								<!-- </a> -->
 							</h1>
+							<h2 class="sub-title">
+								<!-- <a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>"> -->
+									<?php echo $project_subtitle; ?>
+								<!-- </a> -->
+							</h2>
 						
 						</div>
 						<div class="project-tile-content">
@@ -125,6 +131,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div><!-- Meta -->
 						
 					</article>
+				</a>
 
 				<?php endwhile; // OK, let's stop the posts loop once we've exhausted our query/number of posts ?>
 				</div>

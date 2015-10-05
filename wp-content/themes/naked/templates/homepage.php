@@ -23,9 +23,9 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 					<article class="post">
 
 						<?php if (!is_front_page()) : // Only if this page is NOT being used as a home page, display the title ?>
-							<h1 class='title'>
+							<!-- <h1 class='title'>
 								<?php the_title(); // Display the page title ?>
-							</h1>
+							</h1> -->
 						<?php endif; ?>
 										
 						<div class="the-content">
@@ -33,9 +33,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 								//Add image/greeting/callout to top(home) panel
 								$top_image = get_field('top_panel_background');
+								$top_image_url = $top_image['sizes']['panel-fullwidth'];
 								if ( !empty ($top_image)): ?>
 
-							<div class="container home" id="home" style="background-image:url('<?php echo $top_image['url']?>')">
+							<div class="container home" id="home" style="background-image:url('<?php echo $top_image_url; ?>')">
 							<?php endif; ?>
 								<aside class="greeting over_white">
 									<h1><?php echo the_field('top_panel_greeting') ?><!-- <i class="fa fa-fw fa-long-arrow-right fa-small" style="font-size:smaller"></i> --></h1>
@@ -54,7 +55,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 								</div>
 
 							</div>
-
+							
 							<?php if (have_rows ('additional_homepage_panels')): //Setup the panels between the top/bottom panels
 								$ctr = 1; //counters always go in this part of the loop, otherwise they won't increment
 							?>
@@ -76,15 +77,76 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 								$cta_link = get_sub_field('cta_link');
 								$id = get_sub_field('cta_link');
 							?>
+							<?php if ($ctr == 1) :?>
+							
+							<div class="callout">
+									<h2><?php echo $callout; ?></h2>
+									<div class="callout-link"><a href="<?php echo $cta_link ?>"><?php echo $cta_text; ?>&nbsp;&raquo;&raquo;</a></p></div>
+								</div>
+							<div class="container fh" id="panel_<?php echo $ctr ?>" style="background-image:url('<?php echo $imageURL ?>')">
+								
+							</div>
+							<!--New Staff container-->
+							<div class="callout staff">
+								<?php 
+								$p_callout = get_field('principles_callout');?>
+								
+								<h2><?php echo $p_callout; ?></h2>
+								<div class="container_mesh">
+									<!-- <div class="row"> -->
+							
+								
+								<?php
+								if (have_rows ('staff_list')): 
+									$ctr_s == 0;
+									while(have_rows('staff_list')) : the_row();
+									$ctr_s++;
+									$p_img = get_sub_field('image');
+									$p_img_url = $p_img['sizes']['square'];
+									$p_name = get_sub_field('name');
+									$p_title = get_sub_field('title');
+									$p_link = get_sub_field('link');
+								?>
+								<?php if ($ctr_s%3 == 1){echo '<div class="row">';}?>
+									<a href="<?php echo $p_link ?>">
+										<div class="four columns staff-list">
+											<div class="staff-container">
+												<img src="<?php echo $p_img_url; ?>">
+												<h2 class="p_name"><?php echo $p_name ?></h2>
+												<h3 class="p_title"><?php echo $p_title ?><h3>
+											</div>
+										</div>
+									</a>
+								<?php if ($ctr_s%3 == 0 ){echo '</div>';}?>
+							<?php endwhile; endif; ?>
+							<!-- </div> -->
+							<?php  if ($ctr_s%3 == 1) : ?>
+      		 					</div><!--This is the final div-->
+
+      						<?php endif;?>
+      						<?php 
+      							$ps_text = get_field('ps_cta_text');
+      							$ps_link = get_field('ps_cta_link');
+      						?>
+      						<!-- <div class="callout-link"><a href="<?php //echo $ps_link ?>"><?php //echo $ps_text; ?>&nbsp;&raquo;&raquo;</a></p></div> -->
+						</div>
+					</div>
+					<!--End Staff Container-->
+							
+							
+							<?php else :?>
 
 							<div class="container fh" id="panel_<?php echo $ctr ?>" style="background-image:url('<?php echo $imageURL ?>')">
 								
 							</div>
+
 							<div class="callout">
 									<h2><?php echo $callout; ?></h2>
-									<div class="callout-link"><a href="<?php echo $cta_link ?>"><?php echo $cta_text; ?></a></p></div>
+									<div class="callout-link"><a href="<?php echo $cta_link ?>"><?php echo $cta_text; ?>&nbsp;&raquo;&raquo;</a></p></div>
 								</div>
-							
+
+							<?php endif; ?>
+
 							<?php $ctr++; endwhile; ?>
 
 							<?php else: ?>
@@ -118,11 +180,12 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 												//var setup
 												$bp_img = get_sub_field('bp_link_image');
+												$bp_img_url = $bp_img['sizes']['panel-fullwidth'];
 												$bp_link = get_sub_field('bp_link');
 
 											?>
 											<li>
-												<a href="<?php echo $bp_link?>"><img class="this_is_the_list_loop" src="<?php echo $bp_img['url']?>" /></a>
+												<a href="<?php echo $bp_link?>"><img class="this_is_the_list_loop" src="<?php echo $bp_img_url; ?>" /></a>
 
 											</li>
 

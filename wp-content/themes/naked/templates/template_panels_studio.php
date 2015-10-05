@@ -56,7 +56,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</aside>
 						
 						<aside class="project-overview over_white hide">
-						<div class="back mobile-only">
+						<div class="back">
 							<div class="sprite r_arrow alignLeft" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<a href="<?php echo site_url(); ?>/studio">Back To Our Studio</a> <!--<?php wp_get_referer(); ?>-->
 							

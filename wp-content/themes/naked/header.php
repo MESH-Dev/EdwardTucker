@@ -7,7 +7,7 @@
 <!DOCTYPE html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>
 	<?php bloginfo('name'); // show the blog name, from settings ?> | 
 	<?php is_front_page() ? bloginfo('description') : wp_title(''); // if we're on the home page, show the description, from the site's settings - otherwise, show the title of the post or page ?>
@@ -68,7 +68,13 @@
 			<div class="center">
 				
 				<ul>
-					<li class="logo"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png" /></a></li>
+					<li class="logo">
+						<a href="<?php echo site_url(); ?>">
+						<div class="logo-container" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png')">
+						<!-- <img src="<?php echo get_template_directory_uri("/"); ?>/img/et_logo.png" /> -->
+						</div>
+						</a>
+					</li>
 					<li class="nav-list">	
 						<div class="mobile-only sidr-close"><i class="fa fa-fw fa-close"></i></div>
 						<?php
