@@ -4,7 +4,12 @@
 	/* rendering the page and display the header/nav
 	/*-----------------------------------------------------------------------------------*/
 ?>
-<!DOCTYPE html <?php language_attributes(); ?>>
+<!DOCTYPE html <?php language_attributes(); ?> >
+
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

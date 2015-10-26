@@ -26,7 +26,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				if ($count <= 4):
 					$profile_class = 'two-col';
 
-				elseif ($count < 9 && $count > 4):
+				elseif ($count <= 9 && $count > 4):
 					$profile_class = 'three-col';
 
 				endif;
@@ -77,12 +77,16 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				<aside class="search search_form hide over_white">
 					<div class="sprite close" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 					<form name="search" style="display:table-cell; vertical-align:middle;">
-						<label for="s"><h2 style="float:left; display:block;">Search Work</h2></label>
-						<input type="text" value="" name="s"  placeholder="Type to search">
+						<label for="s" class="for-sr"><h2 style="float:left; display:block;">Search Work</h2></label>
+						<input type="search" value="" name="s"  placeholder="Search Work...">
 					</form>
 				</aside>
-					<div id="loader" style="display:none;"><div class="loader-container animate-loader"><!-- <i class="fa fa-spin fa-spinner"></i> --><img src="http://localhost:8888/e-tucker/wp-content/themes/naked/img/eta-loader-white.png"></div></div>
-			<!--<?php query_posts($query_string . '&posts_per_page=-1' );?>-->
+					<div id="loader" style="display:none;">
+						<div class="loader-container animate-loader">
+							<img src="<?php echo get_template_directory_uri("/"); ?>/img/eta-loader.png">
+						</div>
+					</div>
+			
 
 			
 
@@ -140,7 +144,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
 				<article class="post error" style="background:cyan">
-					<h1 class="404">Nothing has been posted like that yet</h1>
+					<h1 class="404">Your search did not produce any results!  Please choose a different search term.</h1>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) ?>

@@ -12,9 +12,9 @@
 		
 		<div class="contact-info">
 		<ul>
-			<li><a href="#"><i class="fa fa-fw fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-fw fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-fw fa-instagram"></i></a></li>
+			<!-- <li><a href="#" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li> -->
+			<li><a href="https://www.facebook.com/EdwardTuckerArchitects" target="_blank"><i class="fa fa-fw fa-facebook-official"></i></a></li>
+			<!-- <li><a href="#" target="_blank"><i class="fa fa-fw fa-instagram"></i></a></li> -->
 			<li><p>1401 Sixth Avenue, Huntington, West Virginia 25701  <span class="contact-number">(347) - 697 - 4990</span></p>
 		</ul>
 		</div>
@@ -71,6 +71,9 @@ $('#responsive-menu-button').sidr({
 		      source: '#sidr'
     		});
 </script>-->
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-561d088479e11b6e" async="async"></script>
 
 </body>
 </html>

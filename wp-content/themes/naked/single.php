@@ -24,15 +24,20 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				// If we have a post to show, start a loop that will display it
 				?>
 					<div class="blog-nav over_white">
-						<div class="title">The news</div>
+						<div class="title"><a href="/news" title="See all news stories">The news</a></div>
 						<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
 					</div>
 
 					<article class="post over_white o_container">
 						<div class="o_container_inner">
-					
+						<div class="cat-list">
+							<?php echo get_the_category_list ('&nbsp;|&nbsp;'); ?>
+						</div>
 						<h1 class="title"><?php the_title(); // Display the title of the post ?></h1>
-						<div class="tags"><?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
+						<div class="tags">
+							<?php echo get_the_date(''); // Display the time published ?> 
+							<?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?>
+						</div>
 						<!--<div class="post-meta">
 							<?php //the_time('m.d.Y'); // Display the time it was published ?>
 							<?php // the author(); Uncomment this and it will display the post author ?>
@@ -51,7 +56,8 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							// This call the main content of the post, the stuff in the main text box while composing.
 							// This will wrap everything in p tags
 							?>
-							
+							<!-- Go to www.addthis.com/dashboard to customize your tools -->
+								<div class="addthis_sharing_toolbox"></div>
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
 						</div><!-- the-content -->
 						
@@ -73,8 +79,11 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
-				<article class="post error project">
-					<h1 class="404">Nothing has been posted like that yet</h1>
+				<article class="post error">
+					<h1 class="404">Your search did not produce any results</h1>
+					<h2>
+                  			Please use a different search term, or try something more specific.
+                	</h2>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having a post or not having a post to show) ?>

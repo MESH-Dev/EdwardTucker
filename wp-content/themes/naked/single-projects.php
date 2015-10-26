@@ -27,6 +27,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						         $topImageURL = $firstrowimagefield['sizes']['panel-fullwidth'];
 						         $award = get_field('award_winning');
 						         $award_link = get_field('award_link');
+						         $a_external = get_field('a_external');
+						         $a_target = "_self";
+						         $award_image = get_field('award_image');
+						         $aw_url= $award_image['sizes']['small'];
 								 
 								 $award_display = 'none';
 								
@@ -60,8 +64,13 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
+								<?php if ($a_external == 'true'):
+									$a_target = '_blank'; 
+									endif;
+									?>
+
 								<?php if (!empty ($award_link)):?>
-								<a href="<?php echo $award_link ?>" target="_blank" > 
+								<a href="<?php echo $award_link ?>" target="<?php echo $a_target; ?>" > 
 
 								<?php else: endif; ?>
 
@@ -70,7 +79,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 								endif;?>
 							<!-- <a href="<?php //echo $award_link ?>" target="_blank" style="display:<?php //echo $award_display ?>"> -->
 								<div class="acheivement" style="display:<?php echo $award_display ?>">
-										<img src="<?php echo get_template_directory_uri("/"); ?>/img/award-winning.png">
+										<img src="<?php echo $aw_url; ?>">
 											<!-- <p>Award Winning</p> -->
 								</div>
 							<?php if (!empty ($award_link)): ?> 

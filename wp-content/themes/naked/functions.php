@@ -120,29 +120,32 @@ return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
-//Add class of current-page-ancestor to Custom Post Types
-function remove_parent($var)
-{
-if ($var == 'current_page_parent' || $var == 'current-menu-item' || $var == 'current-page-ancestor') { return false; }
-return true;
-}
+// Add class of current-page-ancestor to Custom Post Types
+// function remove_parent($var)
+// {
+// if ($var == 'current_page_parent' || $var == 'current-menu-item' || $var == 'current-page-ancestor') { return false; }
+// return true;
+// }
 
-function tg_add_class_to_menu($classes){
-  // Add custom post type name
-  if (is_singular('post') || is_category('')){
+// function tg_add_class_to_menu($classes){
+//   // Add custom post type name
+//   if (is_singular('post') || is_category('')){
     
-    $classes = array_filter($classes, "remove_parent");
+//     $classes = array_filter($classes, "remove_parent");
 
-  // Need to add menu item number
-  if (in_array('menu-item-340', $classes)) $classes[] = 'current-page-ancestor';
-  }
+//   // Need to add menu item number
+//   if (in_array('menu-item-340', $classes)) $classes[] = 'current-page-ancestor';
+//   }
 
-return $classes;
+// return $classes;
+// }
+
+//if (!is_admin()) { add_filter('nav_menu_css_class', 'tg_add_class_to_menu'); }
+
+function new_excerpt_more( $more ) {
+  return '...  <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Read More &raquo;&raquo;', 'your-text-domain' ) . '</a>';
 }
-
-if (!is_admin()) { add_filter('nav_menu_css_class', 'tg_add_class_to_menu'); }
-
-
+add_filter( 'excerpt_more', 'new_excerpt_more' );
 
 
 //Add ajax functionality to pages, all not just in admin
@@ -168,13 +171,15 @@ function get_projects(){
  if ($post_slug == '*'): //All posts?
       $args = array(
       'post_type' => 'projects',
-      'posts_per_page' => -1
+      'posts_per_page' => -1,
+      'post_status' => 'publish'
       
       );
  elseif ($post_slug != ''): //Using the filter
       $args = array(
       'post_type' => 'projects',
       'posts_per_page' => -1,
+      'post_status' => 'publish',
       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
       'tax_query' => array(
         array(
@@ -189,6 +194,7 @@ else:  //If the search is used
       $args = array(
       'post_type' => 'projects',
       'posts_per_page' => -1,
+      'post_status' => 'publish',
       's' => $query
       //
           
@@ -209,7 +215,7 @@ endif;
         if ($count <= 4):
           $profile_class = 'two-col';
 
-        elseif ($count < 9 && $count > 4):
+        elseif ($count <= 9 && $count > 4):
           $profile_class = 'three-col';
 
         endif;
@@ -262,8 +268,11 @@ endif;
         
         echo '<article class="post error">
                 <h1 class="404">
-                  Nothing has been posted like that yet
+                  Your search did not produce any results!
                 </h1>
+                <h2>
+                  Please use a different search term, or try something more specific.
+                </h2>
               </article>';
 
        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
@@ -310,6 +319,7 @@ function naked_scripts()  {
 	wp_enqueue_script( 'ST', get_template_directory_uri() . '/js/jquery.localscroll-1.2.7-min.js', array( 'jquery' ), NAKED_VERSION, true );
 	wp_enqueue_script( 'localS', get_template_directory_uri() . '/js/jquery.scrollTo-1.4.2-min.js', array( 'jquery' ), NAKED_VERSION, true );
 	wp_enqueue_script( 'sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'jquery' ), NAKED_VERSION, true );
+  wp_enqueue_script( 'typd', get_template_directory_uri() . '/js/typed.js', array( 'jquery' ), NAKED_VERSION, true );
 
 
 	// add fitvid

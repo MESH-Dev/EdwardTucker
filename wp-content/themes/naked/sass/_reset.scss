@@ -15,6 +15,10 @@ License: GNU General Public License
 /* Reset
 -------------------------------------------------------------- */
 
+:focus, :active{
+  outline:none;
+}
+
 html,body,div,span,applet,object,iframe,
 h1,h2,h3,h4,h5,h6,
 p,blockquote,pre,a,abbr,acronym,address,big,
@@ -583,8 +587,8 @@ html[xmlns] .clearfix {
      line-height: 1.5em;
    }
    article .title{
-    font-size: 2em;
-    line-height: 1.5em;
+    //font-size: 2em;
+    //line-height: 1.5em;
    }
   .site-title{
      font-size: 6px !important;

@@ -28,7 +28,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 					<!-- </form> -->
 		</aside>
 		<div class="blog-nav over_white">
-			<div class="title">The news</div>
+			<div class="title"><a title="Return to the News archive" href="<?php echo site_url(); ?>/news">The news</a></div>
 			<?php wp_nav_menu( array( 'theme_location' => 'post_sidebar' ) ); ?>
 			<div class="search-news-container">
 				<a href="#" class="search-news button">Search News ></a>
@@ -48,14 +48,27 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 				?>
 					
 
-					<article class="post">
-					
+					<article class="post excerpt">
+						
+						<div class="cat-list">
+							<?php echo get_the_category_list ('&nbsp;|&nbsp;'); ?>
+						</div>
+
 						<h3 class="title">
 							<a href="<?php the_permalink(); // Get the link to this post ?>" title="<?php the_title(); ?>">
 								<?php the_title(); // Show the title of the posts as a link ?>
 							</a>
 						</h3>
-						<div class="tags"><?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?></div>
+						<div class="tags">
+							<?php echo get_the_date(''); // Display the time published ?> 
+							<?php echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?>	
+						</div>
+						<!-- <div class="tags">
+							<?php the_date(''); // Display the time published ?> 
+							<?php //echo get_the_tag_list('', '&nbsp;|&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?>
+							
+							<?php //echo 'Posted In'.get_the_category_list(); ?>
+						</div> -->
 					
 					<?php if(get_field('post_lead')): ?>
 
@@ -76,6 +89,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 						</div><!--/post-meta -->
 						
 						<div class="the-content">
+							
 
 							<?php the_excerpt( 'Continue...' ); 
 							// This call the main content of the post, the stuff in the main text box while composing.
@@ -84,7 +98,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
-							<!-- <a href="<?php echo get_permalink(); ?>"> Read More...</a> -->
+							<!-- <p><a href="<?php echo get_permalink(); ?>"> Read More...</a></p> -->
 						</div><!-- the-content -->
 						
 						<div class="meta clearfix">
@@ -106,8 +120,11 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
-				<article class="post error" style="background:cyan">
-					<h1 class="404">Nothing has been posted like that yet</h1>
+				<article class="post error">
+					<h1 class="404">Your search did not produce any results</h1>
+					<h2>
+                  			Please use a different search term, or try something more specific.
+                	</h2>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) ?>

@@ -48,7 +48,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<!-- Mockup containers -->
 							<div class="container home" style="background-image:url('<?php echo $topImageURL; ?>')">
 								<div class="project-intro"><h1><?php $topImageURL; ?></h1>
-								<aside class="projects-nav single over_white desktop-only">
+								<aside class="projects-nav single over_white">
 							<div class="sprite r_arrow" style="background-image:url('<?php echo get_template_directory_uri("/"); ?>/img/icon_sprite.png')"></div>
 							<!-- <i class="fa fa-fw fa-arrow-left pull-right" style="padding-left:.5em;"></i> -->
 						
@@ -71,15 +71,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							
 							<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
 						</div><!-- the-content -->
-									<!-- <p>TYPE, Date, other tags<br>
-										Body Copy: Marshall Arts Center Marshall Arts Center Marshall Arts Center Marshall Arts Center 
-										Marshall Arts Center Marshall Arts Center. Marshall Arts Center. Marshall Arts Center Marshall 
-										Arts Center Marshall Arts Center Marshall Arts Center Marshall Arts Center Marshall Arts Center. 
-										Marshall Arts Center. Marshall Arts Center Marshall Arts Center Marshall Arts Center Marshall Arts 
-										Center Marshall Arts Center Marshall Arts Center. Marshall Arts Center. This project has won X, Y, Z.</p> -->
-									<!-- <div class="acheivement">
-										<p>Award Winning</p>
-									</div> -->
+									
 						</aside>
 								</div>
 							</div>
@@ -116,35 +108,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 
 							<?php endif; //end loop ?>
 
-							<!-- <div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall-5.jpg')"> -->
-								<!-- <div class="callout">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
-								</div> -->
-							<!-- </div> -->
-							<!-- <div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall_3.jpg')"> -->
-								<!-- <div class="callout">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
-								</div> -->
-							<!-- </div> -->
-							<!-- <div class="container fh " style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/marshall_4.jpg')"> -->
-								<!-- <div class="callout">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-									Vestibulum pretium leo libero, at euismod dui aliquet id. Aenean molestie consectetur lorem, vitae gravida felis tempor.</h2>
-									<div class="center logos">
-										<ul>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-											<li><img src="<?php echo get_template_directory_uri("/"); ?>/img/footer-logos_mockup.png" /></li>
-										</ul>
-									</div>
-								</div> -->
+							
 
 							</div>
 							<!-- ================= -->
@@ -163,7 +127,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
 				<article class="post error">
-					<h1 class="404">Nothing has been posted like that yet</h1>
+					<h1 class="404">Your search did not produce any results</h1>
+					<h2>
+                  			Please use a different search term, or try something more specific.
+                	</h2>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having a page or not having a page to show) ?>

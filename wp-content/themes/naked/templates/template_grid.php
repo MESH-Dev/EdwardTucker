@@ -48,6 +48,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
         						$rows = get_field('image');
         						$external_link = get_sub_field('external_link');
         						$target = '_self';
+        						$subtitle = get_sub_field('subtitle');
         						
         						$profile_class = "four-col";
         						
@@ -61,26 +62,28 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 									$profile_class = 'three-col';
 
 									endif;?>
-        						
-									<article class="post project-tile <?php echo $profile_class ?> ">
-										<div class="project-tile-overlay over_white">
-											<h1 class="title">
-												<?php if ($external_link == 'true'):
+        							<?php if ($external_link == 'true'):
 													$target = '_blank'; 
 													endif;
 													?>
 
-												<a href="<?php echo $link ?>" target="<?php echo $target ?>" alt="Picture of <?php echo $label; ?>" title="Read more about <?php echo $label; ?>">
-												
-													<?php echo $label ?>
-												</a>
-											</h1>
-										</div>
-										<div class="project-tile-content">
-											<img src="<?php echo $imageURL; ?>" />
-										</div>
-										<div class="meta clearfix"></div>
-									</article>
+									<a href="<?php echo $link ?>" target="<?php echo $target ?>" alt="Picture of <?php echo $label; ?>" title="Read more about <?php echo $label; ?>">
+										<article class="post project-tile <?php echo $profile_class ?> ">
+											<div class="project-tile-overlay over_white">
+												<h1 class="title">
+													
+													
+														<?php echo $label ?>
+													
+												</h1>
+												<h2><?php echo $subtitle ?></h2>
+											</div>
+											<div class="project-tile-content">
+												<img src="<?php echo $imageURL; ?>" />
+											</div>
+											<div class="meta clearfix"></div>
+										</article>
+									</a>
 								
 
 								<?php $ctr++; endwhile; endif; ?>
@@ -105,7 +108,10 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
 				<article class="post error">
-					<h1 class="404">Nothing has been posted like that yet</h1>
+					<h1 class="404">Your search did not produce any results</h1>
+					<h2>
+                  			Please use a different search term, or try something more specific.
+                	</h2>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having a page or not having a page to show) ?>
