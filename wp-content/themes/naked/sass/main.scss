@@ -514,7 +514,7 @@ article.post:last-of-type{
 }
 
 .gallery-gateway{
-  position:absolute;
+  position:fixed;
   left:0;
   top:100px;
   z-index: 205;
@@ -553,17 +553,16 @@ article.post:last-of-type{
 
   h1{
     font-size:4em; 
-    padding-top:150px; 
-    padding-left:.5em; 
+    //padding-top:150px; 
+    padding-left:32px; 
     font-weight:100;
     line-height:1.2;
-
-    //&:after{
-      //content:" \2192";
-    //}
   }
 
-
+  h4{
+    padding-top:150px;
+    padding-left:32px;
+  }
 
   }
 
@@ -626,7 +625,7 @@ article.post:last-of-type{
   text-transform:uppercase;
   //left:-95px;
   //transition:all .2s ease-in-out;
-  position:absolute;
+  position:fixed;
   z-index:305;
   font-size:.75em;
   font-size:12px;
@@ -866,7 +865,7 @@ article.post:last-of-type{
   text-transform:uppercase;
   //left:-95px;
   transition:all .2s ease-in-out;
-  position:absolute;
+  position:fixed;
   z-index:204;
 
   form{
@@ -948,13 +947,13 @@ article.post:last-of-type{
     //font-size:2.25em; 
     text-transform:uppercase;
     font-weight:100;
-    word-break:break-all;
-     //text-align: justify;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-    -ms-word-break: break-all;
-    hyphenate-character:"\2112";
+    // word-break:break-all;
+    //  //text-align: justify;
+    // -webkit-hyphens: auto;
+    // -moz-hyphens: auto;
+    // hyphens: auto;
+    // -ms-word-break: break-all;
+    // hyphenate-character:"\2112";
 
     a{
       //width: 100%;
@@ -1174,6 +1173,12 @@ header .sidr-close{
     margin-left: 150px;
     margin-top: 25%;
     position: absolute;
+}
+
+.archive .post.error{
+  height:auto;
+  margin-left:0;
+  position:relative;
 }
 
 // Responsive hooks for jquery
@@ -1922,8 +1927,8 @@ div[id*="panel"]{
   background-position:center center;
 }
 
-.greeting h1{
-  padding-top:50px;
+.greeting h4{
+  padding-top:80px;
 }
 
   .homepage-motto{

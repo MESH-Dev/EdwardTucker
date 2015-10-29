@@ -245,7 +245,7 @@ endif;
               
           endif; 
 
-          echo '<a href="' . $permalink . '" title="' . $title .'">
+          echo '<a href="' . $permalink . '">
                 <article class="post project-tile ' . $profile_class .'">
                 <div class="project-tile-overlay over_white">
                   <h1 class="title">

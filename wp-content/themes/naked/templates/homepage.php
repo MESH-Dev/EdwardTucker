@@ -56,50 +56,68 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 							<aside class="greeting over_white">
 									<script>
 										var ctr = 0;
+										var ctrg = 0;
 										$(function(){
 										      $(".special-words").typed({
 										      	
 										        strings: ["<?php echo the_field('special_word_one'); ?>", "<?php echo the_field('special_word_two'); ?>", "<?php echo the_field('special_word_three'); ?>"],
-										        typeSpeed: 150,
-										        backSpeed: 150,
-										        backDelay: 500,
+										        typeSpeed: 100,
+										        backSpeed: 200,
+										        backDelay: 2000,
 										        loopCount: true,
 										        showCursor: false,
 										        loop: true,
-										        onStringTyped:
+										        preStringTyped:
 
 										        function(){
 										        	
-										        	var background = ['<?php echo $top_panel_two_url ?>','<?php echo $top_panel_three_url ?>', '<?php echo $top_panel_one_url ?>' 
+										        	var background = ['<?php echo $top_panel_one_url ?>','<?php echo $top_panel_two_url ?>', '<?php echo $top_panel_three_url ?>' 
 										        	]
 										        	
-										        	//console.log(ctr);
+										        	//console.log("Counter is" + ctr);
+										        	//console.log(ctr-1);
+										        	console.log("Global counter is" + ctrg);
+										        	//console.log(background[ctr]);
+										        	// console.log(background[0]);
+										        	// console.log(background[1]);
+										        	// console.log(background[2]);
 										        	//console.log(this.arrayPos);
+
 										        	
-										        	
-										        	//$('#home').css({backgroundImage:'url("' + background[ctr] + '")'});
-										        	$('#home').delay(800).fadeTo(600, 0.1, function() 
-										        		{ $(this).css('background-image', 'url(' + background[ctr] + ')'); }).fadeTo(800, 1); 
+										        	if (ctrg == 1){
+										        	//ctr ++;
+										        	$('#home').delay(0).fadeTo(800, 0, function() {
+										      			$(this).css('background-image', 'url(' + background[1] + ')'); }).fadeTo(1000, 1); 
 										        		$('.greeting').css({opacity:1});
+													}
 
-										        	//alert("Done");
-										  
+													else if (ctrg == 2){
+										        	$('#home').delay(0).fadeTo(800, 0, function() {
+										      			$(this).css('background-image', 'url(' + background[2] + ')'); }).fadeTo(1000, 1); 
+										        		$('.greeting').css({opacity:1});
+													}
 
-										        	ctr++
+										        	else if (ctrg == 3){
+										        	 	
+										        	 	$('#home').delay(0).fadeTo(800, 0, function() {
+										      			$(this).css('background-image', 'url(' + background[0] + ')'); }).fadeTo(1000, 1); 
+										        		$('.greeting').css({opacity:1});
+										        		ctrg = 0;
+										        		
+										        	 }
+										        	ctrg++;
 
-										        	if (ctr > 2){
-										        		ctr=0
-										        	}
 										        }
 										      });
 										  });
 										</script>
+									<h4>Edward Tucker Architects</h4>
 									<h1><?php echo the_field('top_panel_greeting') ?><br/>
 
 										<span class="special-words"></span><!-- <i class="fa fa-fw fa-long-arrow-right fa-small" style="font-size:smaller"></i> --></h1>
 								</aside>
 
-							<div class="container home" id="home" style="background-blend-mode: multiply; background-image:url('<?php echo $top_panel_one_url; ?>'); 
+							<div class="container home" id="home" style="background-image:url('<?php echo $top_panel_one_url; ?>'); 
 									"><!-- transition: background 0.5s ease-in-out; -->
 							<?php //endwhile; endif; ?>
 
@@ -327,10 +345,7 @@ get_header(); // This fxn gets the header.php file and renders it ?>
 			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
 				
 				<article class="post error">
-					<h1 class="404">Your search did not produce any results</h1>
-					<h2>
-                  			Please use a different search term, or try something more specific.
-                	</h2>
+					<h1 class="404">Nothing has been posted like that yet</h1>
 				</article>
 
 			<?php endif; // OK, I think that takes care of both scenarios (having a page or not having a page to show) ?>
