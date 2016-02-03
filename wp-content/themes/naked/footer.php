@@ -15,7 +15,7 @@
 			<!-- <li><a href="#" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li> -->
 			<li><a href="https://www.facebook.com/EdwardTuckerArchitects" target="_blank"><i class="fa fa-fw fa-facebook-official"></i></a></li>
 			<!-- <li><a href="#" target="_blank"><i class="fa fa-fw fa-instagram"></i></a></li> -->
-			<li><p>1401 Sixth Avenue, Huntington, West Virginia 25701  <span class="contact-number">(347) - 697 - 4990</span></p>
+			<li><p>1401 Sixth Avenue, Huntington, West Virginia 25701  <span class="contact-number">(304) - 697 - 4990</span></p>
 		</ul>
 		</div>
 
@@ -72,8 +72,20 @@ $('#responsive-menu-button').sidr({
     		});
 </script>-->
 
+<?php if (is_singular('post')){ ?>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-561d088479e11b6e" async="async"></script>
+<?php } ?>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66206223-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 </body>
 </html>
